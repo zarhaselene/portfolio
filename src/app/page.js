@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./layout/Hero.jsx";
-// import Projects from "./layout/Projects.jsx";
+import Projects from "./layout/Projects.jsx";
 // import Experience from "./layout/Experience";
 // import Education from "./layout/Education";
 // import Contact from "./layout/Contact";
@@ -10,7 +10,7 @@ export default function Home() {
     <div>
       <Navbar />
       <Hero />
-      {/* <Projects /> */}
+      <Projects />
       {/* <Experience /> */}
       {/* <Education /> */}
       {/* <Contact /> */}
