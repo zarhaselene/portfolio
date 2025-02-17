@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-base-100 text-base-content px-4 sm:px-10 xl:px-32 xxxl:px-52;
+  font-family: var(--font-poppins), sans-serif;
+  cursor: default;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-bebas-neue), sans-serif;
+}
+a {
+  cursor: pointer;
+}
+
+/* Change of text and background color when highlighted */
+::selection {
+  background: #f86ea7;
+  color: #ffffff;
+}
