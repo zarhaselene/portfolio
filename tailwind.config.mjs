@@ -8,6 +8,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        header: ["var(--font-bebas-neue)", "sans-serif"],
+        main: ["var(--font-poppins), sans-serif;"],
+      },
       screens: {
         xs: "300px",
         sm: "480px",
@@ -28,11 +32,21 @@ export default {
           "100%": { transform: "translateX(-50%)" },
         },
         jelloHorizontal: {
-          "0%": { transform: "scale3d(1, 1, 1)" },
-          "25%": { transform: "scale3d(1.15, 0.85, 1)" },
-          "50%": { transform: "scale3d(0.85, 1.15, 1)" },
-          "75%": { transform: "scale3d(1.05, 0.95, 1)" },
-          "100%": { transform: "scale3d(1, 1, 1)" },
+          "0%": {
+            transform: "scale3d(1, 1, 1)",
+          },
+          "25%": {
+            transform: "scale3d(1.15, 0.85, 1)",
+          },
+          "50%": {
+            transform: "scale3d(0.85, 1.15, 1)",
+          },
+          "75%": {
+            transform: "scale3d(1.05, 0.95, 1)",
+          },
+          "100%": {
+            transform: "scale3d(1, 1, 1)",
+          },
         },
         fadeIn: {
           "0%": { opacity: "0" },
@@ -42,7 +56,7 @@ export default {
       animation: {
         moveAndFade: "moveAndFade 1.5s ease-in-out infinite 0.3s",
         textScroll: "textScroll 8s linear infinite",
-        jelloHorizontal: "jelloHorizontal 0.8s both",
+        jello: "jelloHorizontal 0.9s both",
         fadeIn: "fadeIn 0.5s ease-in-out",
       },
     },
