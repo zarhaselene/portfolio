@@ -20,7 +20,7 @@ const SocialLinks = [
 
 const Socials = () => {
   return (
-    <div className="hidden sm:block fixed bottom-0 left-2 z-10">
+    <div className="hidden sm:block fixed bottom-0 left-2 md:left-auto z-10">
       <div className="flex flex-col items-center space-y-5">
         {SocialLinks.map((link, index) => (
           <SocialIcon key={index} {...link} />

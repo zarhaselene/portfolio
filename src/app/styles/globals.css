@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-base-100 text-base-content px-4 sm:px-10 xl:px-32 xxxl:px-52;
+  @apply bg-base-100 text-base-content px-4 sm:px-10 xl:px-20 xxxl:px-36;
   font-family: var(--font-poppins), sans-serif;
   cursor: default;
 }
