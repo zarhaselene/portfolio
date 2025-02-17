@@ -13,8 +13,15 @@ h2,
 h3 {
   font-family: var(--font-bebas-neue), sans-serif;
 }
+
 a {
   cursor: pointer;
+}
+
+@layer utilities {
+  .text-shadow-custom {
+    text-shadow: 0px 0px 100px rgba(240, 143, 221, 0.27);
+  }
 }
 
 /* Change of text and background color when highlighted */
