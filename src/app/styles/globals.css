@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 body {
-  @apply bg-base-100 text-base-content px-4 sm:px-10 xl:px-20 xxxl:px-36;
+  @apply bg-base-100 text-base-content pt-2 px-4 sm:px-10 xl:px-12 xxxl:px-36;
   font-family: var(--font-poppins), sans-serif;
   cursor: default;
+  overflow-x: hidden;
 }
 
 h1,

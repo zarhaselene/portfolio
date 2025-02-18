@@ -5,7 +5,7 @@ const SocialIcon = ({ href, icon: Icon }) => (
   <a
     href={href}
     target="_blank"
-    className="transition-colors duration-300 ease-linear hover:text-secondary"
+    className="  transition-colors duration-300 ease-linear hover:text-secondary"
     rel="noreferrer"
   >
     <Icon size={25} />

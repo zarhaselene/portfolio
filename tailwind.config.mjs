@@ -12,6 +12,9 @@ export default {
         header: ["var(--font-bebas-neue)", "sans-serif"],
         main: ["var(--font-poppins), sans-serif;"],
       },
+      boxShadow: {
+        dividers: "1px 2px 5px rgb(18,18,18), 0 0 0 1px rgb(53,53,53)", // Custom shadow
+      },
       screens: {
         xs: "300px",
         sm: "480px",
@@ -72,7 +75,7 @@ export default {
           "base-100": "#ffffff", // Background color
           "base-200": "#d2d2d2", // Slightly darker background (for sections or containers)
           "base-300": "#b3b3b3", // Even darker background (for elements like cards)
-          "base-content": "#121212", // Default text color
+          "base-content": "#262626", // Default text color
         },
         dark: {
           primary: "#121212", // Main brand color (for buttons, links, highlights)
@@ -81,7 +84,7 @@ export default {
           "base-100": "#121212", // Background color
           "base-200": "#1e1e1e", // Slightly darker background (for sections or containers)
           "base-300": "#2d2d2d", // Even darker background (for elements like cards)
-          "base-content": "#ffffff", // Default text color
+          "base-content": "#eee", // Default text color
         },
       },
     ],
