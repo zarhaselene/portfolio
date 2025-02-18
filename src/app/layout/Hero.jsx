@@ -38,7 +38,7 @@ const Hero = () => {
   }, [isLargeScreen]);
 
   const letterClass =
-    "font-header text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[14rem] leading-[90%] transition-all duration-300 hover:text-secondary hover:text-shadow-custom";
+    "font-header font-bold text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[14rem] leading-[90%] transition-all duration-300 hover:text-secondary hover:text-shadow-custom";
 
   // Function to handle mouse enter event on a letter
   const handleMouseEnter = (letter) => {
@@ -70,7 +70,7 @@ const Hero = () => {
           {/* Line - Dynamic width  */}
           <span
             className="block w-full bg-base-content h-[10px] 
-            mx-[10px] min-w-[50px] sm:h-[15px] sm:mx-[15px] lg:h-[20px] !lg:mx-[50px]"
+            mx-[10px] min-w-[50px] sm:h-[15px] sm:mx-[15px] lg:h-[30px] !lg:mx-[50px]"
             style={{ minWidth: isLargeScreen ? `${lineWidth}px` : "auto" }}
           ></span>
 

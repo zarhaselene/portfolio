@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <div className="flex items-center w-full min-h-16">
       <div className="flex-1">
-        <a className="text-xl">Zarha Selene</a>
+        <a className="text-lg">Zarha Selene</a>
       </div>
       <div className="flex-none">
         <label className="grid cursor-pointer place-items-center">
