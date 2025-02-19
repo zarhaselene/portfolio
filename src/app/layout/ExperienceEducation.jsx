@@ -93,7 +93,7 @@ const ExperienceEducation = () => {
   return (
     <>
       {/* Experience Section */}
-      <section className="py-8 lg:px-8 bg-primary/5">
+      <section className="py-12 lg:px-8 relative w-screen left-1/2 -translate-x-1/2 mt-12 pt-8 bg-primary/5 ">
         <div className="max-w-7xl mx-auto">
           <motion.h2
             initial="hidden"
@@ -137,7 +137,7 @@ const ExperienceEducation = () => {
                   {exp.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-4 py-2 bg-primary rounded-full border border-secondary/20 text-sm"
+                      className="px-4 py-2 bg-primary text-secondary rounded-full border border-secondary/20 text-sm"
                     >
                       {tech}
                     </span>
