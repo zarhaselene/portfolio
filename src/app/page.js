@@ -1,6 +1,5 @@
 import Navbar from "./components/Navbar";
 import Hero from "./layout/Hero.jsx";
-import Heading from "./components/Heading";
 import Projects from "./layout/Projects.jsx";
 
 // import Experience from "./layout/Experience";
@@ -12,7 +11,6 @@ export default function Home() {
     <div>
       <Navbar />
       <Hero />
-      <Heading word="Projects" />
       <Projects />
       {/* <Experience /> */}
       {/* <Education /> */}

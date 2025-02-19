@@ -13,7 +13,7 @@ export default {
         main: ["var(--font-poppins), sans-serif;"],
       },
       boxShadow: {
-        dividers: "1px 2px 5px rgb(18,18,18), 0 0 0 1px rgb(53,53,53)", // Custom shadow
+        custom: "1px 2px 5px rgb(18,18,18), 0 0 0 1px rgb(53,53,53)", // Custom shadow
       },
       screens: {
         xs: "300px",
