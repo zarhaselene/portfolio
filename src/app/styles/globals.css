@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  * {
+    scrollbar-width: thin;
+  }
+}
+
 body {
   @apply bg-base-100 text-base-content pt-2 px-4 sm:px-10 xl:px-12 xxxl:px-36;
   font-family: var(--font-poppins), sans-serif;
@@ -53,5 +59,3 @@ a {
   background: #ff6347;
   color: #ffd700;
 }
-
-/* Other themes can follow the same pattern */
