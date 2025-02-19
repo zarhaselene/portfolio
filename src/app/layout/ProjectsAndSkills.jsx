@@ -5,25 +5,25 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 const ProjectsAndSkills = () => {
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "Lorem ipsum",
       description:
-        "A modern e-commerce solution built with React and Next.js, featuring dynamic product loading and cart functionality",
+        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi doloremque assumenda recusandae, nulla expedita quaerat tempora voluptate dolor aut nostrum in incidunt. ",
       tags: ["React", "Next.js", "Tailwind CSS", "Stripe"],
       liveUrl: "#",
       githubUrl: "#",
     },
     {
-      title: "Weather Dashboard",
+      title: "Lorem ipsum",
       description:
-        "Real-time weather visualization app with location-based forecasts and interactive maps",
+        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi doloremque assumenda recusandae, nulla expedita quaerat tempora voluptate dolor aut nostrum in incidunt. ",
       tags: ["React", "OpenWeather API", "Chart.js", "Styled Components"],
       liveUrl: "#",
       githubUrl: "#",
     },
     {
-      title: "Task Management App",
+      title: "Lorem ipsum",
       description:
-        "Collaborative task management tool with real-time updates and team functionality",
+        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi doloremque assumenda recusandae, nulla expedita quaerat tempora voluptate dolor aut nostrum in incidunt. ",
       tags: ["React", "Firebase", "Material-UI", "Redux"],
       liveUrl: "#",
       githubUrl: "#",

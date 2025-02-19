@@ -92,7 +92,6 @@ const ExperienceEducation = () => {
 
   return (
     <>
-      {/* FIXA PX Paddding */}
       {/* Experience Section */}
       <section className="py-12 relative w-screen left-1/2 -translate-x-1/2 mt-12 pt-12 bg-primary/5 ">
         <div className="max-w-7xl mx-auto  px-[1rem] sm:px-[5rem] xl:px-[0]">
