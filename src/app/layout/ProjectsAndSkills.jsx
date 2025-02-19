@@ -137,8 +137,8 @@ const ProjectsAndSkills = () => {
   return (
     <div className="w-full min-h-screen">
       {/* Projects Section */}
-      <section className="py-16 lg:py-32 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-12 relative w-screen left-1/2 -translate-x-1/2 mt-12 pt-12 bg-primary/5">
+        <div className="max-w-7xl mx-auto px-[1rem] sm:px-[5rem] xl:px-[0]">
           <motion.h2
             initial="hidden"
             whileInView="visible"
@@ -147,7 +147,7 @@ const ProjectsAndSkills = () => {
           >
             SELECTED PROJECTS
             <motion.span
-              className="absolute -bottom-0 sm:-bottom-3  lg:-bottom-8  left-0 w-24 h-1 bg-secondary origin-left"
+              className="absolute -bottom-0 sm:-bottom-3  lg:-bottom-5  left-0 w-24 h-1 bg-secondary origin-left"
               variants={underlineVariants}
             ></motion.span>
           </motion.h2>
@@ -186,7 +186,7 @@ const ProjectsAndSkills = () => {
                   {project.tags.map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className="px-4 py-2 bg-primary rounded-full border border-secondary/20 hover:border-secondary/50 transition-colors"
+                      className="px-4 py-2 bg-primary text-secondary rounded-full border border-secondary/20 hover:border-secondary/50 transition-colors"
                     >
                       {tag}
                     </span>
@@ -210,7 +210,7 @@ const ProjectsAndSkills = () => {
           >
             SKILLS & EXPERTISE
             <motion.span
-              className="absolute -bottom-0 sm:-bottom-3  lg:-bottom-8 left-0 md:left-auto md:right-0 w-24 h-1 bg-secondary origin-left md:origin-right"
+              className="absolute -bottom-0 sm:-bottom-3  lg:-bottom-5 left-0 md:left-auto md:right-0 w-24 h-1 bg-secondary origin-left md:origin-right"
               variants={underlineVariants}
             ></motion.span>
           </motion.h2>
@@ -226,7 +226,7 @@ const ProjectsAndSkills = () => {
               <motion.div
                 key={index}
                 variants={skillGroupVariants}
-                className="space-y-6 border rounded-xl border-secondary/20 hover:border-secondary/50 transition-colors p-5"
+                className="space-y-6 bg-primary/5 border rounded-xl border-secondary/20 hover:border-secondary/50 transition-colors p-5"
                 whileHover={{
                   scale: 1.02,
                   transition: { duration: 0.2 },
@@ -243,7 +243,7 @@ const ProjectsAndSkills = () => {
                     <motion.span
                       key={skillIndex}
                       variants={skillItemVariants}
-                      className="px-4 py-2 bg-primary rounded-full border border-secondary/20 hover:border-secondary/50 transition-colors"
+                      className="px-4 py-2 bg-primary text-secondary  rounded-full border border-secondary/20 hover:border-secondary/50 transition-colors"
                       whileHover={{
                         scale: 1.1,
                         transition: {

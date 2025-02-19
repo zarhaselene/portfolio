@@ -92,9 +92,10 @@ const ExperienceEducation = () => {
 
   return (
     <>
+      {/* FIXA PX Paddding */}
       {/* Experience Section */}
-      <section className="py-12 lg:px-8 relative w-screen left-1/2 -translate-x-1/2 mt-12 pt-8 bg-primary/5 ">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-12 relative w-screen left-1/2 -translate-x-1/2 mt-12 pt-12 bg-primary/5 ">
+        <div className="max-w-7xl mx-auto  px-[1rem] sm:px-[5rem] xl:px-[0]">
           <motion.h2
             initial="hidden"
             whileInView="visible"
@@ -103,7 +104,7 @@ const ExperienceEducation = () => {
           >
             EXPERIENCE
             <motion.span
-              className="absolute -bottom-0 sm:-bottom-3  lg:-bottom-8  left-0 w-24 h-1 bg-secondary origin-left"
+              className="absolute -bottom-0 sm:-bottom-3  lg:-bottom-5  left-0 w-24 h-1 bg-secondary origin-left"
               variants={underlineVariants}
             ></motion.span>
           </motion.h2>
@@ -161,7 +162,7 @@ const ExperienceEducation = () => {
           >
             EDUCATION
             <motion.span
-              className="absolute -bottom-0 sm:-bottom-3 lg:-bottom-8 left-0 md:left-auto md:right-0 w-24 h-1 bg-secondary origin-left md:origin-right"
+              className="absolute -bottom-0 sm:-bottom-3 lg:-bottom-5 left-0 md:left-auto md:right-0 w-24 h-1 bg-secondary origin-left md:origin-right"
               variants={underlineVariants}
             ></motion.span>
           </motion.h2>
