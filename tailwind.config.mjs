@@ -69,13 +69,13 @@ export default {
     themes: [
       {
         light: {
-          primary: "#ffffff", // Main brand color (for buttons, links, highlights)
-          secondary: "#efa5b8", // Secondary brand color (used for accents)
+          primary: "#eee", // A nice blue that works well for interactive elements
+          secondary: "#efa5b8", // A complementary pink that pairs well with the blue
 
-          "base-100": "#ffffff", // Background color
-          "base-200": "#d2d2d2", // Slightly darker background (for sections or containers)
-          "base-300": "#b3b3b3", // Even darker background (for elements like cards)
-          "base-content": "#262626", // Default text color
+          "base-100": "#ffffff", // Keep white as main background
+          "base-200": "#f3f4f6", // Subtle light gray for sections
+          "base-300": "#e5e7eb", // Slightly darker gray for cards
+          "base-content": "#1f2937", // Dark gray for text that meets accessibility standards
         },
         dark: {
           primary: "#121212", // Main brand color (for buttons, links, highlights)

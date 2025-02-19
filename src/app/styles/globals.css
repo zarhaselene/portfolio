@@ -11,8 +11,16 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: var(--font-bebas-neue), sans-serif;
+}
+
+@layer components {
+  h2 {
+    @apply text-[3rem] sm:text-[5rem] sm:leading-[85%] lg:text-[9rem] 
+           font-bold mb-16 lg:mb-24 tracking-[3px] relative;
+  }
 }
 
 a {
