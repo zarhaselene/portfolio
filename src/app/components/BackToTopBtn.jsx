@@ -47,16 +47,16 @@ const BackToTopBtn = () => {
             shadow-lg
             transition-all
             duration-300
-            hover:border-secondary
             focus:outline-none
             focus:ring-1
             focus:ring-secondary
             group
+            hover:border-secondary
             hover:animate-jello
           `}
           aria-label="Back to top"
         >
-          <HiArrowNarrowUp className="w-5 h-5 text-base-content group-hover:text-secondary transition-colors duration-300" />
+          <HiArrowNarrowUp className="w-5 h-5 text-secondary group-hover:text-secondary transition-colors duration-300" />
         </button>
       )}
     </>
