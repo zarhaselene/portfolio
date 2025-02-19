@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="relative w-screen left-1/2 -translate-x-1/2 shadow-custom mt-12 pt-8">
+    <footer className="relative w-screen left-1/2 -translate-x-1/2  mt-12 pt-8 bg-primary/5">
       <div className="max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -19,7 +19,7 @@ const Footer = () => {
           <p className="text-lg text-base-content/80 max-w-2xl mx-auto">
             Let's discuss how we can work together to create something amazing.
           </p>
-          <button className="px-8 py-4 bg-secondary hover:animate-jello text-base-content rounded-full text-xl font-bold hover:text-base-content hover:bg-primary hover:border-secondary hover:border transition-colors">
+          <button className="px-8 py-4 bg-primary hover:animate-jello text-secondary rounded-full text-xl font-bold hover:border-secondary hover:border transition-colors">
             Get in Touch
           </button>
           <div className="flex justify-center gap-8 mt-16">

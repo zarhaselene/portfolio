@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./layout/Hero.jsx";
 import ProjectsAndSkills from "./layout/ProjectsAndSkills.jsx";
 import ExperienceEducation from "./layout/ExperienceEducation";
-import Footer from "./components/Footer";
+import Footer from "./layout/Footer";
 import BackToTopBtn from "./components/BackToTopBtn";
 
 export default function Home() {
