@@ -8,7 +8,6 @@ const ThemeSelector = () => {
     { name: "dark", label: "Dark" },
     { name: "light", label: "Light" },
     { name: "green", label: "Green" },
-    { name: "yellow", label: "Yellow" },
   ];
 
   useEffect(() => {

@@ -29,10 +29,7 @@ export default {
           "50%": { opacity: "1" },
           "100%": { transform: "translateY(-10px)", opacity: "0" },
         },
-        textScroll: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
+
         jelloHorizontal: {
           "0%": { transform: "scale3d(1, 1, 1)" },
           "25%": { transform: "scale3d(1.15, 0.85, 1)" },
@@ -40,16 +37,11 @@ export default {
           "75%": { transform: "scale3d(1.05, 0.95, 1)" },
           "100%": { transform: "scale3d(1, 1, 1)" },
         },
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
+        
       },
       animation: {
         moveAndFade: "moveAndFade 1.5s ease-in-out infinite 0.3s",
-        textScroll: "textScroll 8s linear infinite",
         jello: "jelloHorizontal 0.9s both",
-        fadeIn: "fadeIn 0.5s ease-in-out",
       },
     },
   },
@@ -59,7 +51,7 @@ export default {
       {
         light: {
           primary: "#3D3A4A",
-          secondary: "#efa5b8",
+          secondary: "#e07b94",
           "base-100": "#FFF5E1",
           "base-200": "#FFD9E8",
           "base-300": "#d9cfba",
@@ -76,20 +68,11 @@ export default {
 
         green: {
           primary: "#DCD7C9",
-          secondary: "#A27B5C",
+          secondary: "#8C6249",
           "base-100": "#2C3930",
           "base-200": "#586e5e",
           "base-300": "#3F4F44",
           "base-content": "#DCD7C9",
-        },
-
-        yellow: {
-          primary: "#FF6347",
-          secondary: "#FFD700",
-          "base-100": "#FFF5E1",
-          "base-200": "#FFD9E8",
-          "base-300": "#d9cfba",
-          "base-content": "#3D3A4A",
         },
       },
     ],
