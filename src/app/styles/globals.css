@@ -29,12 +29,29 @@ a {
 
 @layer utilities {
   .text-shadow-custom {
-    text-shadow: 0px 0px 100px rgba(240, 143, 221, 0.27);
+    text-shadow: 0px 0px 100px rgba(114, 125, 115, 0.35);
   }
 }
 
-/* Change of text and background color when highlighted */
-::selection {
+/* Dark theme selection */
+[data-theme="dark"] ::selection {
   background: #f86ea7;
   color: #ffffff;
 }
+
+/* Light theme selection */
+[data-theme="light"] ::selection {
+  background: #3d3a4a;
+  color: #efa5b8;
+}
+[data-theme="green"] ::selection {
+  background: #dcd7c9;
+  color: #a27b5c;
+}
+
+[data-theme="yellow"] ::selection {
+  background: #ff6347;
+  color: #ffd700;
+}
+
+/* Other themes can follow the same pattern */
