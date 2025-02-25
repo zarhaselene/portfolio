@@ -137,7 +137,7 @@ const ProjectsAndSkills = () => {
   return (
     <div className="w-full min-h-screen">
       {/* Projects Section */}
-      <section className="relative w-screen left-1/2 -translate-x-1/2 mt-12 md:py-16 lg:py-32 bg-primary/5">
+      <section className="relative w-screen left-1/2 -translate-x-1/2  py-12 md:py-16 lg:py-32 bg-primary/5">
         <div className="max-w-7xl mx-auto px-[1rem] sm:px-[5rem] xl:px-[0]">
           <motion.h2
             initial="hidden"
@@ -199,7 +199,7 @@ const ProjectsAndSkills = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="mt-12 md:py-16 lg:py-32 lg:px-8">
+      <section className=" py-12 md:py-16 lg:py-32 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <motion.h2
             className="md:text-right"
