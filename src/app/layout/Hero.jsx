@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import ScrollIndicator from "../components/ScrollIndicator";
 import Socials from "../components/Socials";
@@ -9,33 +9,24 @@ import Location from "../components/Location";
 const Hero = () => {
   const [hoveredLetter, setHoveredLetter] = useState(null);
   const [lineWidth, setLineWidth] = useState(100);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   // Handles scroll event to dynamically adjust the width of the animated line
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
+    const isLargeScreen = window.innerWidth >= 1024;
     if (isLargeScreen) {
       const position = window.scrollY;
-      const scrollDistance = 200; // Maximum scroll distance to trigger full animation
-      const scrollRatio = Math.min(position / scrollDistance, 1); // Ensures value stays between 0 and 1
-      const newLineWidth = 100 + scrollRatio * 560; // Adjust line width based on scroll position
+      const scrollRatio = position / window.innerHeight;
+      const newLineWidth = 100 + scrollRatio * window.innerWidth * 2;
       setLineWidth(newLineWidth);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024); // Detects if screen size is large
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Initial check when component mounts
-
     window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isLargeScreen]);
+  }, [handleScroll]);
 
   // CSS class for animated letters in the heading
   const letterClass =
@@ -46,56 +37,55 @@ const Hero = () => {
   };
 
   // Framer Motion animation variants
-
   // Parent container animation: Staggers children for a sequential reveal effect
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1, // Delays each child by 0.1s
-        delayChildren: 0.3, // Starts revealing after 0.3s
+        staggerChildren: 0.05,
+        delayChildren: 0.2,
       },
     },
   };
 
   // Animation for each letter: Bounces in from above
   const letterVariants = {
-    hidden: { y: -100, opacity: 0 },
+    hidden: { y: -50, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
-        stiffness: 100, // Determines how much spring effect
-        damping: 12, // Controls how bouncy the animation is
+        type: "tween",
+        duration: 0.2,
+        ease: "easeOut",
       },
     },
   };
 
   // Animation for the middle line: Expands horizontally
   const lineVariants = {
-    hidden: { scaleX: 0 }, // Starts as invisible (scaleX = 0)
+    hidden: { scaleX: 0 },
     visible: {
-      scaleX: 1, // Expands fully
+      scaleX: 1,
       transition: {
-        duration: 0.8, // Animation duration
-        ease: "easeInOut", // Smooth ease-in-out effect
-        delay: 0.5, // Delays after the heading starts appearing
+        duration: 0.8,
+        ease: "easeInOut",
+        delay: 0.5,
       },
     },
   };
 
   // Animation for introduction text: Slides in from the left
   const introTextVariants = {
-    hidden: { opacity: 0, x: -50 }, // Starts off-screen
+    hidden: { opacity: 0, x: -30 },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.8,
-        delay: 1, // Delays text appearance by 1s
-        ease: "easeOut", // Smooth slide-in effect
+        duration: 0.5,
+        delay: 0.8,
+        ease: "easeOut",
       },
     },
   };
@@ -105,7 +95,7 @@ const Hero = () => {
     return word.split("").map((letter, index) => (
       <motion.span
         key={index}
-        variants={letterVariants} // Applies bounce effect to each letter
+        variants={letterVariants}
         className={
           hoveredLetter === letter ? `${className} hovered` : className
         }
@@ -121,7 +111,7 @@ const Hero = () => {
       className="h-[90vh] w-full relative overflow-hidden"
       initial="hidden"
       animate="visible"
-      variants={containerVariants} // Triggers staggered animation
+      variants={containerVariants}
     >
       <div className="w-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 xl:max-w-[1280px] lg:max-w-[900px] sm:max-w-[580px]">
         {/* Animated Heading */}
@@ -134,8 +124,10 @@ const Hero = () => {
           <motion.span
             className="block w-full bg-base-content h-[10px] 
             mx-[10px] min-w-[50px] sm:h-[15px] sm:mx-[15px] lg:h-[30px] !lg:mx-[50px]"
-            style={{ minWidth: isLargeScreen ? `${lineWidth}px` : "auto" }}
-            variants={lineVariants} // Expanding animation
+            style={{
+              minWidth: window.innerWidth >= 1024 ? `${lineWidth}px` : "auto",
+            }}
+            variants={lineVariants}
           ></motion.span>
           {renderLetters("End", letterClass)}
         </motion.div>
