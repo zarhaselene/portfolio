@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ThemeSelector = () => {
   const [theme, setTheme] = useState("dark");
@@ -22,6 +23,12 @@ const ThemeSelector = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  // Define animation variants for the dropdown
+  const dropdownVariants = {
+    hidden: { opacity: 0, y: -5 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <div className="relative">
       <button
@@ -42,27 +49,37 @@ const ThemeSelector = () => {
         </svg>
       </button>
 
-      {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-base-300 rounded-md shadow-md z-50">
-          {themes.map((t) => (
-            <button
-              key={t.name}
-              onClick={() => {
-                setTheme(t.name);
-                setIsOpen(false);
-              }}
-              className={`w-full px-4 py-2 text-left hover:bg-secondary/80 rounded-md hover:text-primary transition-colors font-header
-                ${
-                  theme === t.name
-                    ? "text-secondary bg-primary"
-                    : "text-base-content"
-                }`}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
-      )}
+      {/* Animate dropdown visibility with AnimatePresence */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="absolute right-0 mt-2 w-48 bg-base-300 rounded-md shadow-md z-50"
+            variants={dropdownVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{ duration: 0.3 }}
+          >
+            {themes.map((t) => (
+              <button
+                key={t.name}
+                onClick={() => {
+                  setTheme(t.name);
+                  setIsOpen(false);
+                }}
+                className={`w-full px-4 py-2 text-left hover:bg-secondary/80 rounded-md hover:text-primary transition-colors font-header
+                  ${
+                    theme === t.name
+                      ? "text-secondary bg-primary"
+                      : "text-base-content"
+                  }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
