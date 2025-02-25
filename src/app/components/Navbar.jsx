@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { SunIcon, MoonIcon } from "./Svgs";
+import { ThemeSelector } from "./ThemeController";
 
 const Navbar = () => {
   const [theme, setTheme] = useState("dark");
@@ -17,27 +17,15 @@ const Navbar = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const handleThemeToggle = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
   return (
     <div className="flex items-center w-full min-h-16">
       <div className="flex-1">
-        <a className="text-lg ">Zarha Selene</a>
+        <a className="text-lg hover:animate-jello hover:text-secondary min-w-[9rem] inline-block ">
+          Zarha Selene
+        </a>
       </div>
       <div className="flex-none">
-        <label className="grid cursor-pointer place-items-center">
-          <input
-            type="checkbox"
-            value="synthwave"
-            className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1 hover:bg-secondary"
-            checked={theme === "light"}
-            onChange={handleThemeToggle}
-          />
-          <SunIcon />
-          <MoonIcon />
-        </label>
+        <ThemeSelector />
       </div>
     </div>
   );

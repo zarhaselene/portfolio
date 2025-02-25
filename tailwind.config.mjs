@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    // "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/layout/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,7 +12,7 @@ export default {
         main: ["var(--font-poppins), sans-serif;"],
       },
       boxShadow: {
-        custom: "1px 2px 5px rgb(18,18,18), 0 0 0 1px rgb(53,53,53)", // Custom shadow
+        custom: "1px 2px 5px rgb(18,18,18), 0 0 0 1px rgb(53,53,53)",
       },
       screens: {
         xs: "300px",
@@ -30,37 +29,19 @@ export default {
           "50%": { opacity: "1" },
           "100%": { transform: "translateY(-10px)", opacity: "0" },
         },
-        textScroll: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
+
         jelloHorizontal: {
-          "0%": {
-            transform: "scale3d(1, 1, 1)",
-          },
-          "25%": {
-            transform: "scale3d(1.15, 0.85, 1)",
-          },
-          "50%": {
-            transform: "scale3d(0.85, 1.15, 1)",
-          },
-          "75%": {
-            transform: "scale3d(1.05, 0.95, 1)",
-          },
-          "100%": {
-            transform: "scale3d(1, 1, 1)",
-          },
+          "0%": { transform: "scale3d(1, 1, 1)" },
+          "25%": { transform: "scale3d(1.15, 0.85, 1)" },
+          "50%": { transform: "scale3d(0.85, 1.15, 1)" },
+          "75%": { transform: "scale3d(1.05, 0.95, 1)" },
+          "100%": { transform: "scale3d(1, 1, 1)" },
         },
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
+        
       },
       animation: {
         moveAndFade: "moveAndFade 1.5s ease-in-out infinite 0.3s",
-        textScroll: "textScroll 8s linear infinite",
         jello: "jelloHorizontal 0.9s both",
-        fadeIn: "fadeIn 0.5s ease-in-out",
       },
     },
   },
@@ -69,22 +50,29 @@ export default {
     themes: [
       {
         light: {
-          primary: "#ffffff", // Main brand color (for buttons, links, highlights)
-          secondary: "#efa5b8", // Secondary brand color (used for accents)
-
-          "base-100": "#ffffff", // Background color
-          "base-200": "#d2d2d2", // Slightly darker background (for sections or containers)
-          "base-300": "#b3b3b3", // Even darker background (for elements like cards)
-          "base-content": "#262626", // Default text color
+          primary: "#3D3A4A",
+          secondary: "#e07b94",
+          "base-100": "#FFF5E1",
+          "base-200": "#FFD9E8",
+          "base-300": "#d9cfba",
+          "base-content": "#3D3A4A",
         },
         dark: {
-          primary: "#121212", // Main brand color (for buttons, links, highlights)
-          secondary: "#efa5b8", // Secondary brand color (used for accents)
+          primary: "#2d2d2d",
+          secondary: "#efa5b8",
+          "base-100": "#121212",
+          "base-200": "#1e1e1e",
+          "base-300": "#2d2d2d",
+          "base-content": "#eee",
+        },
 
-          "base-100": "#121212", // Background color
-          "base-200": "#1e1e1e", // Slightly darker background (for sections or containers)
-          "base-300": "#2d2d2d", // Even darker background (for elements like cards)
-          "base-content": "#eee", // Default text color
+        green: {
+          primary: "#DCD7C9",
+          secondary: "#8C6249",
+          "base-100": "#2C3930",
+          "base-200": "#586e5e",
+          "base-300": "#3F4F44",
+          "base-content": "#DCD7C9",
         },
       },
     ],
