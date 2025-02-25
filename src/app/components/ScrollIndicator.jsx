@@ -1,19 +1,28 @@
+"use client";
 import { useState, useEffect } from "react";
 
 const ScrollIndicator = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hasMounted) return;
+
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [hasMounted]);
+
+  if (!hasMounted) return null; // Prevents server-side rendering issues
 
   const opacity = Math.max(1 - scrollY / 200, 0);
 

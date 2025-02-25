@@ -9,23 +9,32 @@ import Location from "../components/Location";
 const Hero = () => {
   const [hoveredLetter, setHoveredLetter] = useState(null);
   const [lineWidth, setLineWidth] = useState(100);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  // Effect to set initial screen size
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    }
+  }, []);
 
   // Handles scroll event to dynamically adjust the width of the animated line
   const handleScroll = useCallback(() => {
-    const isLargeScreen = window.innerWidth >= 1024;
-    if (isLargeScreen) {
+    if (typeof window !== "undefined" && isLargeScreen) {
       const position = window.scrollY;
       const scrollRatio = position / window.innerHeight;
       const newLineWidth = 100 + scrollRatio * window.innerWidth * 2;
       setLineWidth(newLineWidth);
     }
-  }, []);
+  }, [isLargeScreen]);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
   }, [handleScroll]);
 
   // CSS class for animated letters in the heading
@@ -37,7 +46,6 @@ const Hero = () => {
   };
 
   // Framer Motion animation variants
-  // Parent container animation: Staggers children for a sequential reveal effect
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -49,7 +57,6 @@ const Hero = () => {
     },
   };
 
-  // Animation for each letter: Bounces in from above
   const letterVariants = {
     hidden: { y: -50, opacity: 0 },
     visible: {
@@ -63,7 +70,6 @@ const Hero = () => {
     },
   };
 
-  // Animation for the middle line: Expands horizontally
   const lineVariants = {
     hidden: { scaleX: 0 },
     visible: {
@@ -76,7 +82,6 @@ const Hero = () => {
     },
   };
 
-  // Animation for introduction text: Slides in from the left
   const introTextVariants = {
     hidden: { opacity: 0, x: -30 },
     visible: {
@@ -125,7 +130,7 @@ const Hero = () => {
             className="block w-full bg-base-content h-[10px] 
             mx-[10px] min-w-[50px] sm:h-[15px] sm:mx-[15px] lg:h-[30px] !lg:mx-[50px]"
             style={{
-              minWidth: window.innerWidth >= 1024 ? `${lineWidth}px` : "auto",
+              minWidth: isLargeScreen ? `${lineWidth}px` : "auto",
             }}
             variants={lineVariants}
           ></motion.span>
