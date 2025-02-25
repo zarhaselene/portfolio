@@ -28,7 +28,7 @@ const ThemeSelector = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="px-4 py-2 bg-base-100 rounded-md hover:bg-primary transition-colors flex items-center gap-2"
       >
-        <span className="font-header text-secondary">Theme</span>
+        <span className="font-header text-lg text-secondary">Theme</span>
         <svg
           width="12"
           height="12"
