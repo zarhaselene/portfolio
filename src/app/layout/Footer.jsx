@@ -11,7 +11,7 @@ const Footer = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="space-y-8"
+          className="space-y-8 flex flex-col items-center "
         >
           <h3 className="text-4xl font-bold tracking-[2px]">
             Ready to Collaborate?
@@ -19,9 +19,13 @@ const Footer = () => {
           <p className="text-lg text-base-content/80 max-w-2xl mx-auto">
             Let's discuss how we can work together to create something amazing.
           </p>
-          <button className="px-8 py-4 bg-primary hover:animate-jello text-secondary rounded-full text-xl font-bold border border-secondary/20 hover:border-secondary/50 transition-colors">
+          <a
+            href="mailto:zarhabuske@hotmail.com"
+            className="block w-56 px-8 py-4 bg-primary hover:animate-jello text-secondary rounded-full text-xl font-bold border border-secondary/20 hover:border-secondary/50 transition-colors"
+          >
             Get in Touch
-          </button>
+          </a>
+
           <div className="flex justify-center gap-8 mt-16">
             <a
               href="#"
