@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="relative w-screen left-1/2 -translate-x-1/2  mt-12 pt-8 px-4 sm:px-10 bg-primary/5">
+    <footer className="relative w-screen left-1/2 -translate-x-1/2 pt-20 md:pt-12 pb-5 px-4 sm:px-10 bg-primary/5">
       <div className="max-w-7xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

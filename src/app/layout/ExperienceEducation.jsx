@@ -93,7 +93,7 @@ const ExperienceEducation = () => {
   return (
     <>
       {/* Experience Section */}
-      <section className="py-12 relative w-screen left-1/2 -translate-x-1/2 mt-12 pt-12 bg-primary/5 ">
+      <section className=" relative w-screen left-1/2 -translate-x-1/2 mt-12 md:py-16 lg:py-32 bg-primary/5 ">
         <div className="max-w-7xl mx-auto  px-[1rem] sm:px-[5rem] xl:px-[0]">
           <motion.h2
             initial="hidden"
@@ -150,7 +150,7 @@ const ExperienceEducation = () => {
       </section>
 
       {/* Education Section */}
-      <section className="py-8 lg:px-8">
+      <section className="mt-16 md:py-16 lg:py-32">
         <div className="max-w-7xl mx-auto">
           <motion.h2
             className="md:text-right"
