@@ -244,14 +244,6 @@ const ProjectsAndSkills = () => {
                       key={skillIndex}
                       variants={skillItemVariants}
                       className="px-4 py-2 bg-primary text-secondary  rounded-full border border-secondary/20 hover:border-secondary/50 transition-colors"
-                      whileHover={{
-                        scale: 1.1,
-                        transition: {
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 10,
-                        },
-                      }}
                     >
                       {skill}
                     </motion.span>
