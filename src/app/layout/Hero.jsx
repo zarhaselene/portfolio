@@ -113,7 +113,7 @@ const Hero = () => {
 
   return (
     <motion.div
-      className="h-[90vh] mb-12 w-full relative overflow-hidden"
+      className="h-[90vh] mb-12 w-full relative "
       initial="hidden"
       animate="visible"
       variants={containerVariants}
