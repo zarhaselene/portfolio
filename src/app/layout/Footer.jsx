@@ -26,26 +26,6 @@ const Footer = () => {
             Get in Touch
           </a>
 
-          <div className="flex justify-center gap-8 mt-16">
-            <a
-              href="#"
-              className="text-2xl hover:animate-jello hover:text-secondary transition-all duration-300 ease-linear"
-            >
-              <FaGithub />
-            </a>
-            <a
-              href="#"
-              className="text-2xl hover:animate-jello hover:text-secondary transition-all duration-300 ease-linear"
-            >
-              <FaLinkedin />
-            </a>
-            <a
-              href="#"
-              className="text-2xl hover:animate-jello hover:text-secondary transition-all duration-300 ease-linear"
-            >
-              <FaEnvelope />
-            </a>
-          </div>
           <p className="text-base-content/60 text-sm">© 2024 Zarha Selene.</p>
         </motion.div>
       </div>
