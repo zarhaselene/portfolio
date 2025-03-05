@@ -5,12 +5,12 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 const ProjectsAndSkills = () => {
   const projects = [
     {
-      title: "Lorem ipsum",
+      title: "Countdown ",
       description:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi doloremque assumenda recusandae, nulla expedita quaerat tempora voluptate dolor aut nostrum in incidunt. ",
-      tags: ["React", "Next.js", "Tailwind CSS", "Stripe"],
-      liveUrl: "#",
-      githubUrl: "#",
+        "A responsive countdown timer that ticks down every second. Includes hover states for interactive elements and a card flip animation for changing numbers.",
+      tags: ["HTML5", "JavaScript", "CSS3", "CSS Grid", "Flexbox"],
+      liveUrl: "https://zarhaselene-countdown.netlify.app/",
+      githubUrl: "https://github.com/zarhaselene/countdown",
     },
     {
       title: "Lorem ipsum",
@@ -64,39 +64,39 @@ const ProjectsAndSkills = () => {
   // Animation variants for headings
   const headingVariants = {
     hidden: {
-      opacity: 0, // Start fully transparent
-      y: 100, // Start positioned lower
+      opacity: 0,
+      y: 100,
     },
     visible: {
-      opacity: 1, // Fade in
-      y: 0, // Move to normal position
+      opacity: 1,
+      y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1], // Custom easing curve
+        ease: [0.25, 0.1, 0.25, 1],
       },
     },
   };
 
   const underlineVariants = {
     hidden: {
-      scaleX: 0, // Start with no width
+      scaleX: 0,
     },
     visible: {
-      scaleX: 1, // Expand to full width
+      scaleX: 1,
       transition: {
         duration: 0.8,
         ease: [0.25, 0.1, 0.25, 1],
-        delay: 0.2, // Slight delay after heading appears
+        delay: 0.2,
       },
     },
   };
 
   // Animation variants for skill groups
   const containerVariants = {
-    hidden: {}, // Empty object to allow staggerChildren to work
+    hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1, // Stagger each child animation by 0.1s
+        staggerChildren: 0.1,
       },
     },
   };
@@ -111,7 +111,7 @@ const ProjectsAndSkills = () => {
       y: 0,
       transition: {
         duration: 0.5,
-        staggerChildren: 0.08, // Each child appears with a delay of 0.08s
+        staggerChildren: 0.08,
       },
     },
   };
@@ -128,8 +128,8 @@ const ProjectsAndSkills = () => {
       y: 0,
       transition: {
         type: "spring",
-        stiffness: 100, // Controls how stiff the spring is
-        damping: 10, // Controls the bounce effect
+        stiffness: 100,
+        damping: 10,
       },
     },
   };
@@ -166,12 +166,14 @@ const ProjectsAndSkills = () => {
                   </h3>
                   <div className="flex gap-4 mb-6">
                     <a
+                      target="_blank"
                       href={project.liveUrl}
                       className="hover:text-secondary hover:animate-jello transition-colors"
                     >
                       <FaExternalLinkAlt size={24} />
                     </a>
                     <a
+                      target="_blank"
                       href={project.githubUrl}
                       className="hover:text-secondary hover:animate-jello transition-colors"
                     >
