@@ -12,7 +12,7 @@ const SocialIcon = ({ href, icon: Icon }) => (
   </a>
 );
 const SocialLinks = [
-  { href: "mailto:zarhaselene@gmail.com", icon: HiOutlineMail },
+  { href: "mailto:zarhabuske@hotmail.com", icon: HiOutlineMail },
   { href: "https://linkedin.com/in/zarhabuske", icon: FaLinkedinIn },
   { href: "https://github.com/zarhaselene", icon: FaGithub },
   { href: "https://codepen.io/zarhaselene", icon: FaCodepen },
