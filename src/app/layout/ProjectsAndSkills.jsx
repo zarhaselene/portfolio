@@ -5,20 +5,20 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 const ProjectsAndSkills = () => {
   const projects = [
     {
-      title: "Countdown ",
+      title: "FODMAP Recipe App",
+      description:
+        "A web application designed to help users find and manage low-FODMAP recipes and resources. It features advanced search, filtering options, and detailed food and recipe information to support dietary management.",
+      tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      liveUrl: "https://fodmap-recipe.netlify.app",
+      githubUrl: "https://github.com/zarhaselene/fodmap-recipe" 
+    },
+    {
+      title: "Countdown",
       description:
         "A responsive countdown timer that ticks down every second. Includes hover states for interactive elements and a card flip animation for changing numbers.",
       tags: ["HTML5", "JavaScript", "CSS3", "CSS Grid", "Flexbox"],
       liveUrl: "https://zarhaselene-countdown.netlify.app/",
       githubUrl: "https://github.com/zarhaselene/countdown",
-    },
-    {
-      title: "Lorem ipsum",
-      description:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi doloremque assumenda recusandae, nulla expedita quaerat tempora voluptate dolor aut nostrum in incidunt. ",
-      tags: ["React", "OpenWeather API", "Chart.js", "Styled Components"],
-      liveUrl: "#",
-      githubUrl: "#",
     },
     {
       title: "Lorem ipsum",
