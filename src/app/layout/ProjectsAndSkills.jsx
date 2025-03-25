@@ -8,9 +8,17 @@ const ProjectsAndSkills = () => {
       title: "FODMAP Recipe App",
       description:
         "A web application designed to help users find and manage low-FODMAP recipes and resources. It features advanced search, filtering options, and detailed food and recipe information to support dietary management.",
-      tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      tags: ["Next.js", "Tailwind CSS", "Framer Motion", "Context API"],
       liveUrl: "https://fodmap-recipe.netlify.app",
-      githubUrl: "https://github.com/zarhaselene/fodmap-recipe" 
+      githubUrl: "https://github.com/zarhaselene/fodmap-recipe",
+    },
+    {
+      title: "Pokémon Next.js App",
+      description:
+        "A Pokédex built with Next.js in a collaborative project. I developed the Favorites page, navigation bar, individual Pokémon detail page, and implemented the Context API to manage Pokémon data. The app allows users to explore Pokémon, bookmark favorites, and search by name or ID, featuring a responsive design and type-based browsing.",
+      tags: ["Next.js", "Tailwind CSS", "PokeAPI", "Context API"],
+      liveUrl: "https://chas-pokemon.netlify.app/",
+      githubUrl: "https://github.com/zarhaselene/chas_pokemon",
     },
     {
       title: "Countdown",
@@ -19,14 +27,6 @@ const ProjectsAndSkills = () => {
       tags: ["HTML5", "JavaScript", "CSS3", "CSS Grid", "Flexbox"],
       liveUrl: "https://zarhaselene-countdown.netlify.app/",
       githubUrl: "https://github.com/zarhaselene/countdown",
-    },
-    {
-      title: "Lorem ipsum",
-      description:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi doloremque assumenda recusandae, nulla expedita quaerat tempora voluptate dolor aut nostrum in incidunt. ",
-      tags: ["React", "Firebase", "Material-UI", "Redux"],
-      liveUrl: "#",
-      githubUrl: "#",
     },
   ];
   const skills = [
