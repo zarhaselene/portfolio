@@ -124,7 +124,7 @@ const Hero = () => {
           className="flex items-center justify-center"
           variants={containerVariants}
         >
-          {renderLetters("Front", letterClass)}
+          {renderLetters("Full", letterClass)}
           {/* Animated middle line */}
           <motion.span
             className="block w-full bg-base-content h-[10px] 
@@ -134,7 +134,7 @@ const Hero = () => {
             }}
             variants={lineVariants}
           ></motion.span>
-          {renderLetters("End", letterClass)}
+          {renderLetters("Stack", letterClass)}
         </motion.div>
 
         {/* Developer title and intro text */}
