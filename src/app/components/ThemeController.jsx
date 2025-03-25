@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ThemeSelector = () => {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("green");
   const [isOpen, setIsOpen] = useState(false);
 
   const themes = [
