@@ -13,7 +13,7 @@ const ProjectsAndSkills = () => {
       githubUrl: "https://github.com/zarhaselene/fodmap-recipe",
     },
     {
-      title: "Pokémon Next.js App",
+      title: "Pokédex",
       description:
         "A Pokédex built with Next.js in a collaborative project. I developed the Favorites page, navigation bar, individual Pokémon detail page, and implemented the Context API to manage Pokémon data. The app allows users to explore Pokémon, bookmark favorites, and search by name or ID, featuring a responsive design and type-based browsing.",
       tags: ["Next.js", "Tailwind CSS", "PokeAPI", "Context API"],
