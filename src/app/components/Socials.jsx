@@ -26,18 +26,21 @@ const SocialLinks = [
     tooltip: "Download my resume",
     id: "resume-tooltip",
   },
-  { href: "mailto:zarhaselene@hotmail.com", icon: HiOutlineMail },
+  { href: "mailto:zarhabuske@hotmail.com", icon: HiOutlineMail },
   { href: "https://linkedin.com/in/zarhaselene", icon: FaLinkedinIn },
   { href: "https://github.com/zarhaselene", icon: FaGithub },
 ];
 
 export default function Socials() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
     };
+
+    // Set initial value after component mounts
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
