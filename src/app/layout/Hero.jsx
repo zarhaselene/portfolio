@@ -157,7 +157,7 @@ const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 0.8 }}
             >
-              Stockholm-based web developer specializing in front-end magic.
+              Stockholm-based web developer specializing in frontend magic.
               <br />
               Let&rsquo;s collaborate and make the web extraordinary.
             </motion.p>

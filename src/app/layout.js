@@ -15,7 +15,7 @@ const bebasNeue = Bebas_Neue({
 export const metadata = {
   title: "Zarha | Portfolio",
   description:
-    " I am Stockholm-based web developer specializing in front-end magic. Transforming ideas into digital wonders.",
+    " I am Stockholm-based web developer specializing in frontend magic. Transforming ideas into digital wonders.",
 };
 
 export default function RootLayout({ children }) {

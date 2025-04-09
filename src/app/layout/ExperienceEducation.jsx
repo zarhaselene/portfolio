@@ -6,10 +6,10 @@ const ExperienceEducation = () => {
   const experiences = [
     {
       period: "2022 - 2023",
-      role: "Front-end Developer Intern",
+      role: "Frontend Developer Intern",
       company: "Sphinxly | Remote",
       description:
-        "Collaborated with a team of interns to plan, develop, and deliver a client website using Easyweb CMS, React.js, TypeScript, and SCSS. Participated in various client projects, providing technical support and troubleshooting. Enhanced front-end performance and responsiveness through code optimization and testing.",
+        "Collaborated with a team of interns to plan, develop, and deliver a client website using Easyweb CMS, React.js, TypeScript, and SCSS. Participated in various client projects, providing technical support and troubleshooting. Enhanced frontend performance and responsiveness through code optimization and testing.",
       technologies: ["Easyweb CMS", "React.js", "TypeScript", "SCSS"],
     },
   ];
@@ -17,17 +17,17 @@ const ExperienceEducation = () => {
   const education = [
     {
       period: "Sep 2024 - June 2026",
-      program: "Front-End Developer",
+      program: "Frontend Developer",
       institution: "Chas Academy | Stockholm",
       description:
-        "Currently pursuing Vocational Higher Education in Front-End Development at Chas Academy. This program provides comprehensive training in advanced JavaScript, React, and TypeScript, emphasizing mobile-first design and responsive web development. The coursework includes practical applications of React Native for mobile app development and TypeScript. I am gaining hands-on experience with modern web technologies, agile methodologies, and UX/UI principles to effectively create and optimize both web and mobile applications.",
+        "Currently pursuing Vocational Higher Education in Frontend Development at Chas Academy. This program provides comprehensive training in advanced JavaScript, React, and TypeScript, emphasizing mobile-first design and responsive web development. The coursework includes practical applications of React Native for mobile app development and TypeScript. I am gaining hands-on experience with modern web technologies, agile methodologies, and UX/UI principles to effectively create and optimize both web and mobile applications.",
     },
     {
       period: "2020 - 2023",
       program: "Web Developer in E-Commerce",
       institution: "Medieinstitutet | Stockholm",
       description:
-        "Vocational higher education in web development with a specialization in e-commerce. The courses included front-end and back-end development, database technology, system development with frameworks, integration with third-party systems, development against e-commerce platforms, and work and project methodology.",
+        "Vocational higher education in web development with a specialization in e-commerce. The courses included frontend and back-end development, database technology, system development with frameworks, integration with third-party systems, development against e-commerce platforms, and work and project methodology.",
     },
     {
       period: "2013 - 2016",
