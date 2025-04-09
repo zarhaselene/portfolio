@@ -21,13 +21,13 @@ const SocialIcon = ({ href, icon: Icon, tooltip, id }) => (
 
 const SocialLinks = [
   {
-    href: "/zarhaselene/resume.pdf",
+    href: "/zarhaselene/Zarha_Buske_Resume.pdf",
     icon: FaRegFileAlt,
     tooltip: "Download my resume",
     id: "resume-tooltip",
   },
   { href: "mailto:zarhabuske@hotmail.com", icon: HiOutlineMail },
-  { href: "https://linkedin.com/in/zarhaselene", icon: FaLinkedinIn },
+  { href: "https://linkedin.com/in/zarhabuske", icon: FaLinkedinIn },
   { href: "https://github.com/zarhaselene", icon: FaGithub },
 ];
 
