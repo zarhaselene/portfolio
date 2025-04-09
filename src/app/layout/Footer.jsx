@@ -26,7 +26,9 @@ const Footer = () => {
             Get in Touch
           </a>
 
-          <p className="text-base-content/60 text-sm">© 2024 Zarha Selene.</p>
+          <p className="text-base-content/60 text-sm pb-16 md:pb-0">
+            © 2024 Zarha Selene.
+          </p>
         </motion.div>
       </div>
     </footer>
