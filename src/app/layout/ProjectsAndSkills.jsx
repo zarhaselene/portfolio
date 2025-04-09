@@ -40,23 +40,36 @@ const ProjectsAndSkills = () => {
         "Next.js",
         "Tailwind CSS",
         "SASS",
+        "Framer Motion",
+        // "TypeScript",
+        // "React Native"
       ],
     },
     {
       category: "Backend",
-      items: ["RESTful APIs", "PHP", "MySQL"],
+      items: ["Node.js", "Express", "RESTful APIs", "PHP", "MySQL"],
     },
     {
-      category: "Tools & Methods",
-      items: ["Agile Methodologies", "Git"],
+      category: "CMS & E-Commerce",
+      items: ["WordPress", "WooCommerce", "Easyweb CMS"],
+    },
+    {
+      category: "DevOps & Cloud",
+      items: ["Docker", "AWS", "CI/CD"],
+    },
+    {
+      category: "Tools & Workflow",
+      items: ["Git", "Agile Methodologies"],
     },
     {
       category: "Design",
       items: [
         "UI/UX Principles",
+        "WCAG",
+        "Figma",
         "Adobe Photoshop",
         "Adobe Illustrator",
-        "Figma",
+        "Affinity Designer",
       ],
     },
   ];
