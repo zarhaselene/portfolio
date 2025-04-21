@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import "./styles/globals.css";
 import { Poppins, Bebas_Neue } from "next/font/google";
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${bebasNeue.variable} ${poppins.variable} antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
