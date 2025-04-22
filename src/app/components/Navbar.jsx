@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <div className="flex items-center w-full min-h-16">
       <div className="flex-1">
-        <a className="text-lg hover:animate-jello hover:text-secondary min-w-[9rem] inline-block ">
+        <a className="text-lg font-header hover:text-secondary min-w-[9rem] inline-block ">
           Zarha Selene
         </a>
       </div>
