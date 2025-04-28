@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ThemeSelector = () => {
   const [theme, setTheme] = useState("green");
   const [isOpen, setIsOpen] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState(0);
+
+  const optionsRef = useRef([]);
+  const buttonRef = useRef(null);
+  const containerRef = useRef(null);
 
   const themes = [
     { name: "dark", label: "Dark" },
-    { name: "light", label: "Light" },
     { name: "green", label: "Green" },
   ];
 
@@ -23,23 +27,69 @@ const ThemeSelector = () => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Define animation variants for the dropdown
-  const dropdownVariants = {
-    hidden: { opacity: 0, y: -5 },
-    visible: { opacity: 1, y: 0 },
+  useEffect(() => {
+    if (isOpen && optionsRef.current[focusedIndex]) {
+      optionsRef.current[focusedIndex]?.focus();
+    }
+  }, [isOpen, focusedIndex]);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setIsOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  const closeDropdown = () => {
+    setIsOpen(false);
+    buttonRef.current?.focus();
+  };
+
+  const handleKeyDown = (e) => {
+    if (!isOpen) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setFocusedIndex((prev) => (prev + 1) % themes.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setFocusedIndex((prev) => (prev - 1 + themes.length) % themes.length);
+    } else if (e.key === "Escape") {
+      closeDropdown();
+    } else if (e.key === "Enter") {
+      setTheme(themes[focusedIndex].name);
+      closeDropdown();
+    }
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="px-4 py-2 bg-base-100 rounded-md hover:bg-primary transition-colors flex items-center gap-2"
+        ref={buttonRef}
+        onClick={() => {
+          setIsOpen((prev) => !prev);
+          setFocusedIndex(themes.findIndex((t) => t.name === theme));
+        }}
+        onKeyDown={handleKeyDown}
+        className="px-4 py-2 bg-base-100  hover:bg-base-300 transition-colors flex items-center gap-2 focus-ring"
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
       >
-        <span className="font-header text-lg text-secondary">Theme</span>
+        <span className="font-header text-lg">Theme</span>
         <svg
           width="12"
           height="12"
-          className={`transform transition-transform text-secondary ${
+          className={`transform transition-transform ${
             isOpen ? "rotate-180" : ""
           }`}
           fill="currentColor"
@@ -48,31 +98,37 @@ const ThemeSelector = () => {
           <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z" />
         </svg>
       </button>
-
-      {/* Animate dropdown visibility with AnimatePresence */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             className="absolute right-0 mt-2 w-48 bg-base-300 rounded-md shadow-md z-50"
-            variants={dropdownVariants}
+            variants={{
+              hidden: { opacity: 0, y: -5 },
+              visible: { opacity: 1, y: 0 },
+            }}
             initial="hidden"
             animate="visible"
             exit="hidden"
             transition={{ duration: 0.3 }}
+            role="listbox"
           >
-            {themes.map((t) => (
+            {themes.map((t, i) => (
               <button
                 key={t.name}
+                ref={(el) => (optionsRef.current[i] = el)}
                 onClick={() => {
                   setTheme(t.name);
-                  setIsOpen(false);
+                  closeDropdown();
                 }}
-                className={`w-full px-4 py-2 text-left hover:bg-secondary/80 rounded-md hover:text-primary transition-colors font-header
+                onKeyDown={handleKeyDown}
+                className={`w-full px-4 py-2 text-left hover:bg-secondary/80 rounded-md hover:text-primary transition-colors font-header focus-ring 
                   ${
                     theme === t.name
                       ? "text-secondary bg-primary"
                       : "text-base-content"
                   }`}
+                role="option"
+                aria-selected={theme === t.name}
               >
                 {t.label}
               </button>

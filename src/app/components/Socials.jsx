@@ -4,15 +4,16 @@ import { useState, useEffect } from "react";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 
-const SocialIcon = ({ href, icon: Icon, tooltip, id }) => (
+const SocialIcon = ({ href, icon: Icon, tooltip, id, ariaLabel }) => (
   <>
     {tooltip && <Tooltip id={id} place="top" content={tooltip} />}
     <a
       href={href}
       target="_blank"
-      className="hover:animate-jello transition-colors duration-300 ease-linear hover:text-secondary"
+      className="hover:animate-jello transition-colors duration-300 ease-linear hover:text-secondary focus-ring"
       rel="noreferrer"
       data-tooltip-id={id}
+      aria-label={ariaLabel}
     >
       <Icon size={25} />
     </a>
@@ -25,10 +26,23 @@ const SocialLinks = [
     icon: FaRegFileAlt,
     tooltip: "Download my resume",
     id: "resume-tooltip",
+    ariaLabel: "Download Zarha Buske's Resume",
   },
-  { href: "mailto:zarhabuske@hotmail.com", icon: HiOutlineMail },
-  { href: "https://linkedin.com/in/zarhabuske", icon: FaLinkedinIn },
-  { href: "https://github.com/zarhaselene", icon: FaGithub },
+  {
+    href: "mailto:zarhabuske@hotmail.com",
+    icon: HiOutlineMail,
+    ariaLabel: "Email Zarha Buske",
+  },
+  {
+    href: "https://linkedin.com/in/zarhabuske",
+    icon: FaLinkedinIn,
+    ariaLabel: "Zarha Buske's LinkedIn Profile",
+  },
+  {
+    href: "https://github.com/zarhaselene",
+    icon: FaGithub,
+    ariaLabel: "Zarha Buske's GitHub Profile",
+  },
 ];
 
 export default function Socials() {

@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import ScrollIndicator from "../components/ScrollIndicator";
-import Socials from "../components/Socials";
 import Location from "../components/Location";
 
 const Hero = () => {
@@ -112,15 +111,15 @@ const Hero = () => {
   };
 
   return (
-    <motion.div
-      className="h-[90vh] mb-12 w-full relative "
+    <motion.header
+      className="h-[95vh] mb-12 w-full relative "
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
-      <div className="w-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 xl:max-w-[1280px] lg:max-w-[900px] sm:max-w-[580px]">
+      <h1 className="w-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 xl:max-w-[1280px] lg:max-w-[900px] sm:max-w-[580px]">
         {/* Animated Heading */}
-        <motion.div
+        <motion.span
           className="flex items-center justify-center"
           variants={containerVariants}
         >
@@ -135,41 +134,44 @@ const Hero = () => {
             variants={lineVariants}
           ></motion.span>
           {renderLetters("Stack", letterClass)}
-        </motion.div>
+        </motion.span>
 
         {/* Developer title and intro text */}
-        <div className="heading flex flex-col lg:items-start xl:flex-row xl:items-center xl:justify-between">
+        <span className="heading flex flex-col lg:items-start xl:flex-row xl:items-center xl:justify-between">
           <motion.div variants={containerVariants}>
             {renderLetters("Developer", letterClass)}
           </motion.div>
           {/* Introduction text animation */}
           <motion.div
-            className="mt-5 w-[100%] max-w-[100%] lg:mt-5 xl:w-1/4 xl:text-right lg:text-left xl:items-start text-left"
+            className="mt-5 w-[100%] max-w-[100%] lg:mt-5 xl:w-1/3 xl:text-right lg:text-left xl:items-start text-left"
             variants={introTextVariants}
           >
-            <motion.h4 className="tracking-[3px] text-[1.2rem] font-light text-secondary hover:animate-jello min-w-[9rem] inline-block">
+            <motion.p className="tracking-[3px] text-[1.3rem] font-light text-secondary hover:animate-jello inline-block">
               Hello there,
-            </motion.h4>
-            <motion.p className="text-[2.5rem]">I&rsquo;m Zarha</motion.p>
+            </motion.p>
+
+            <motion.p className="text-[2.5rem] lg:text-[3rem]">
+              I&rsquo;m Zarha
+            </motion.p>
             <motion.p
-              className="text-[1rem]"
+              className="text-[1rem] font-main"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 0.8 }}
             >
-              Stockholm-based web developer specializing in frontend magic.
-              <br />
-              Let&rsquo;s collaborate and make the web extraordinary.
+              Stockholm-based full-stack developer with a passion for creating
+              digital experiences that merge form and function. Specializing in
+              frontend development where design meets code to build intuitive,
+              accessible applications.
             </motion.p>
           </motion.div>
-        </div>
-      </div>
+        </span>
+      </h1>
       <div>
-        <Socials />
         <ScrollIndicator />
         <Location />
       </div>
-    </motion.div>
+    </motion.header>
   );
 };
 

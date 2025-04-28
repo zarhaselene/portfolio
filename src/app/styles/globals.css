@@ -32,6 +32,9 @@ h4 {
 a {
   cursor: pointer;
 }
+.focus-ring {
+  @apply rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-4 focus-visible:ring-offset-base-100;
+}
 
 @layer utilities {
   .text-shadow-custom {
@@ -45,17 +48,7 @@ a {
   color: #ffffff;
 }
 
-/* Light theme selection */
-[data-theme="light"] ::selection {
-  background: #3d3a4a;
-  color: #efa5b8;
-}
 [data-theme="green"] ::selection {
   background: #dcd7c9;
   color: #a27b5c;
-}
-
-[data-theme="yellow"] ::selection {
-  background: #ff6347;
-  color: #ffd700;
 }
