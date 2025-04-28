@@ -14,12 +14,24 @@ const ContactForm = () => {
 
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
+  const widgetIdRef = useRef(null);
+
   useEffect(() => {
     setIsClient(true);
 
     const checkRecaptchaReady = () => {
-      if (typeof window.grecaptcha !== "undefined") {
+      if (typeof window.grecaptcha !== "undefined" && recaptchaSiteKey) {
         window.grecaptcha.ready(() => {
+          widgetIdRef.current = window.grecaptcha.render(
+            "recaptcha-container",
+            {
+              sitekey: recaptchaSiteKey,
+              size: "invisible",
+              callback: (token) => {
+                // handled in execute
+              },
+            }
+          );
           setRecaptchaReady(true);
         });
       } else {
@@ -28,21 +40,23 @@ const ContactForm = () => {
     };
 
     checkRecaptchaReady();
-  }, []);
+  }, [recaptchaSiteKey]);
 
   const executeRecaptcha = async () => {
-    if (typeof window.grecaptcha === "undefined") {
-      throw new Error("reCAPTCHA not loaded");
-    }
+    return new Promise((resolve, reject) => {
+      if (
+        typeof window.grecaptcha === "undefined" ||
+        widgetIdRef.current === null
+      ) {
+        reject("reCAPTCHA not loaded");
+        return;
+      }
 
-    try {
-      const token = await window.grecaptcha.execute(recaptchaSiteKey, {
-        action: "submit",
-      });
-      return token;
-    } catch (error) {
-      throw error;
-    }
+      window.grecaptcha
+        .execute(widgetIdRef.current)
+        .then(resolve)
+        .catch(reject);
+    });
   };
 
   const sendEmail = async (e) => {
@@ -124,9 +138,9 @@ const ContactForm = () => {
 
   return (
     <>
-      {/* reCAPTCHA v3 Script */}
+      {/* reCAPTCHA v2 Script */}
       <Script
-        src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+        src="https://www.google.com/recaptcha/api.js"
         strategy="afterInteractive"
       />
 
@@ -231,6 +245,7 @@ const ContactForm = () => {
                 )}
               </button>
             </motion.div>
+            <div id="recaptcha-container" className="absolute -z-10"></div>
 
             {/* Status messages */}
             {isClient && isSent && (
