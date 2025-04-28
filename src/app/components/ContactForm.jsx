@@ -5,41 +5,29 @@ import emailjs from "@emailjs/browser";
 import Script from "next/script";
 
 const ContactForm = () => {
-  const form = useRef();
+  const form = useRef(null);
   const recaptchaRef = useRef(null);
   const [isSending, setIsSending] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState(null);
-  const [isRecaptchaLoaded, setIsRecaptchaLoaded] = useState(false);
+  const [recaptchaWidgetId, setRecaptchaWidgetId] = useState(null);
 
   useEffect(() => {
     setIsClient(true);
     emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
 
-    // Define global callbacks for reCAPTCHA
     window.onRecaptchaLoad = () => {
-      setIsRecaptchaLoaded(true);
-
-      // Explicitly render reCAPTCHA when loaded
-      if (
-        typeof window.grecaptcha !== "undefined" &&
-        window.grecaptcha.render &&
-        recaptchaRef.current
-      ) {
+      if (typeof window.grecaptcha !== "undefined" && recaptchaRef.current) {
         try {
-          window.grecaptcha.render("recaptcha", {
+          const widgetId = window.grecaptcha.render(recaptchaRef.current, {
             sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY,
-            theme: "dark",
-            size: "normal",
-            callback: (token) => {
-              setRecaptchaToken(token);
-            },
-            "expired-callback": () => {
-              setRecaptchaToken(null);
-            },
+            size: "invisible",
+            callback: onRecaptchaSuccess,
+            "expired-callback": onRecaptchaExpired,
           });
+          setRecaptchaWidgetId(widgetId);
         } catch (error) {
           console.error("reCAPTCHA rendering error:", error);
         }
@@ -47,24 +35,34 @@ const ContactForm = () => {
     };
 
     return () => {
-      // Clean up
       delete window.onRecaptchaLoad;
     };
-  }, [isClient]);
+  }, []);
+
+  const onRecaptchaSuccess = (token) => {
+    setIsVerifying(false); // Done verifying
+    submitEmail(token);
+  };
+
+  const onRecaptchaExpired = () => {
+    setIsVerifying(false);
+    console.warn("reCAPTCHA expired. Please try again.");
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    // Verify recaptcha
-    if (!recaptchaToken) {
-      setIsError(true);
-      setTimeout(() => setIsError(false), 5000);
-      return;
+    if (window.grecaptcha && recaptchaWidgetId !== null) {
+      setIsVerifying(true); // Start verifying
+      window.grecaptcha.execute(recaptchaWidgetId);
     }
+  };
+
+  const submitEmail = (token) => {
+    if (!form.current) return;
 
     setIsSending(true);
 
-    // Create formData from the form
     const formData = new FormData(form.current);
     const now = new Date();
     const formattedTime = now.toLocaleString("en-US", {
@@ -76,7 +74,6 @@ const ContactForm = () => {
       minute: "2-digit",
     });
 
-    // Convert FormData to emailjs expected format
     const templateParams = {
       name: formData.get("name"),
       email: formData.get("email"),
@@ -84,7 +81,7 @@ const ContactForm = () => {
       title: formData.get("subject"),
       message: formData.get("message"),
       time: formattedTime,
-      "g-recaptcha-response": recaptchaToken,
+      "g-recaptcha-response": token,
     };
 
     emailjs
@@ -99,21 +96,15 @@ const ContactForm = () => {
           console.log(result.text);
           setIsSent(true);
           setIsError(false);
-          form.current.reset();
-
-          // Reset reCAPTCHA
-          if (window.grecaptcha) {
-            window.grecaptcha.reset();
+          form.current?.reset();
+          if (window.grecaptcha && recaptchaWidgetId !== null) {
+            window.grecaptcha.reset(recaptchaWidgetId);
           }
-          setRecaptchaToken(null);
-
-          // Hide success message after 5 seconds
           setTimeout(() => setIsSent(false), 5000);
         },
         (error) => {
-          console.log(error.text);
+          console.error(error.text);
           setIsError(true);
-          // Hide error message after 5 seconds
           setTimeout(() => setIsError(false), 5000);
         }
       )
@@ -122,16 +113,12 @@ const ContactForm = () => {
       });
   };
 
-  // Animation variants
   const formVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.5,
-        staggerChildren: 0.2,
-      },
+      transition: { duration: 0.5, staggerChildren: 0.2 },
     },
   };
 
@@ -140,10 +127,7 @@ const ContactForm = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
@@ -151,16 +135,12 @@ const ContactForm = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        duration: 0.8,
-        delay: 0.3,
-      },
+      transition: { duration: 0.8, delay: 0.3 },
     },
   };
 
   return (
     <>
-      {/* reCAPTCHA Script */}
       <Script
         src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit"
         strategy="afterInteractive"
@@ -183,7 +163,7 @@ const ContactForm = () => {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {/* Form fields */}
+            {/* Form Fields */}
             <motion.div variants={itemVariants}>
               <input
                 type="text"
@@ -227,28 +207,24 @@ const ContactForm = () => {
               />
             </motion.div>
 
-            {/* reCAPTCHA container with ref */}
-            <motion.div
-              variants={itemVariants}
-              className="flex justify-center md:justify-start"
-            >
-              <div className="md:bg-primary/10 md:border md:border-secondary/20 md:rounded-xl md:p-3 overflow-hidden">
-                <div
-                  id="recaptcha"
-                  ref={recaptchaRef}
-                  className="g-recaptcha"
-                ></div>
-              </div>
-            </motion.div>
+            {/* Invisible reCAPTCHA */}
+            <div style={{ display: "none" }}>
+              <div id="recaptcha" ref={recaptchaRef} />
+            </div>
 
             <motion.div className="mx-auto" variants={itemVariants}>
               <button
                 type="submit"
                 className="w-56 px-6 py-4 bg-primary hover:animate-jello text-base-200 rounded-full text-xl font-bold border border-secondary/20 hover:border-secondary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 aria-label="Send message"
-                disabled={!recaptchaToken || isSending}
+                disabled={isSending || isVerifying}
               >
-                {isSending ? (
+                {isVerifying ? (
+                  <div className="flex items-center space-x-2">
+                    <div className="w-5 h-5 border-2 border-t-2 border-t-secondary border-secondary/50 rounded-full animate-spin"></div>
+                    <span>Verifying...</span>
+                  </div>
+                ) : isSending ? (
                   <div className="flex items-center space-x-2">
                     <div className="w-5 h-5 border-2 border-t-2 border-t-secondary border-secondary/50 rounded-full animate-spin"></div>
                     <span>Sending...</span>
@@ -276,11 +252,29 @@ const ContactForm = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-red-500/10 border border-red-500/20 text-red-400 font-medium text-center p-3 rounded-xl"
               >
-                {!recaptchaToken
-                  ? "Please complete the reCAPTCHA verification."
-                  : "Something went wrong. Please try again."}
+                Something went wrong. Please try again.
               </motion.div>
             )}
+            <motion.div
+              variants={itemVariants}
+              className="text-xs text-base-content/60 text-center md:text-left"
+            >
+              This site is protected by reCAPTCHA and the Google
+              <a
+                href="https://policies.google.com/privacy"
+                className="text-secondary hover:text-secondary/80 mx-1"
+              >
+                Privacy Policy
+              </a>
+              and
+              <a
+                href="https://policies.google.com/terms"
+                className="text-secondary hover:text-secondary/80 mx-1"
+              >
+                Terms of Service
+              </a>
+              apply.
+            </motion.div>
           </motion.form>
         </div>
       </motion.div>
