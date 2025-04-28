@@ -1,19 +1,22 @@
-import Navbar from "./components/Navbar";
 import Hero from "./layout/Hero.jsx";
-import ProjectsAndSkills from "./layout/ProjectsAndSkills.jsx";
-import ExperienceEducation from "./layout/ExperienceEducation";
+import AboutMe from "./layout/AboutMe";
+import Projects from "./layout/Projects.jsx";
+import Skills from "./layout/Skills.jsx";
+import Experience from "./layout/Experience";
+import Education from "./layout/Education";
 import Footer from "./layout/Footer";
-import BackToTopBtn from "./components/BackToTopBtn";
-
 export default function Home() {
   return (
-    <div>
-      <Navbar />
+    <>
       <Hero />
-      <ProjectsAndSkills />
-      <ExperienceEducation />
+      <main>
+        <AboutMe />
+        <Projects />
+        <Skills />
+        <Experience />
+        <Education />
+      </main>
       <Footer />
-      <BackToTopBtn />
-    </div>
+    </>
   );
 }
