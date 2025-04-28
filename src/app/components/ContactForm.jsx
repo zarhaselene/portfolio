@@ -27,9 +27,7 @@ const ContactForm = () => {
             {
               sitekey: recaptchaSiteKey,
               size: "invisible",
-              callback: (token) => {
-                // handled in execute
-              },
+              callback: (token) => {},
             }
           );
           setRecaptchaReady(true);
@@ -245,7 +243,10 @@ const ContactForm = () => {
                 )}
               </button>
             </motion.div>
-            <div id="recaptcha-container" className="absolute -z-10"></div>
+            <div
+              id="recaptcha-container"
+              className="absolute -z-10 hidden"
+            ></div>
 
             {/* Status messages */}
             {isClient && isSent && (
