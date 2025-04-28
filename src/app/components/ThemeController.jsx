@@ -1,8 +1,19 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const initializeTheme = () => {
+  // Check if code is running in browser environment
+  if (typeof window !== "undefined") {
+    const storedTheme = localStorage.getItem("theme") || "green";
+    document.documentElement.setAttribute("data-theme", storedTheme);
+    return storedTheme;
+  }
+  return "green";
+};
+
 const ThemeSelector = () => {
-  const [theme, setTheme] = useState("green");
+  // Use the result of initializeTheme as the initial state
+  const [theme, setTheme] = useState(() => initializeTheme());
   const [isOpen, setIsOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(0);
 
@@ -15,13 +26,7 @@ const ThemeSelector = () => {
     { name: "green", label: "Green" },
   ];
 
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme");
-    if (storedTheme) {
-      setTheme(storedTheme);
-    }
-  }, []);
-
+  // When theme changes, update localStorage and document
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);

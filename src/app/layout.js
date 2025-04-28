@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/react";
 import "./styles/globals.css";
 import { Poppins, Bebas_Neue } from "next/font/google";
+import ThemeInitializer from "./components/ThemeInitializer";
 import Navbar from "./components/Navbar";
 import BackToTopBtn from "./components/BackToTopBtn";
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={`${bebasNeue.variable} ${poppins.variable} antialiased`}>
         <Navbar />
+        <ThemeInitializer />
         {children}
         <BackToTopBtn />
         <Analytics />
