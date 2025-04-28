@@ -7,6 +7,7 @@ import Script from "next/script";
 const ContactForm = () => {
   const form = useRef();
   const recaptchaRef = useRef(null);
+  const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isClient, setIsClient] = useState(false);
@@ -61,6 +62,8 @@ const ContactForm = () => {
       return;
     }
 
+    setIsSending(true);
+
     // Create formData from the form
     const formData = new FormData(form.current);
     const now = new Date();
@@ -78,7 +81,7 @@ const ContactForm = () => {
       name: formData.get("name"),
       email: formData.get("email"),
       subject: formData.get("subject"),
-      title: formData.get("subject"), // Add mapping for email subject
+      title: formData.get("subject"),
       message: formData.get("message"),
       time: formattedTime,
       "g-recaptcha-response": recaptchaToken,
@@ -113,7 +116,10 @@ const ContactForm = () => {
           // Hide error message after 5 seconds
           setTimeout(() => setIsError(false), 5000);
         }
-      );
+      )
+      .finally(() => {
+        setIsSending(false);
+      });
   };
 
   // Animation variants
@@ -226,7 +232,7 @@ const ContactForm = () => {
               variants={itemVariants}
               className="flex justify-center md:justify-start"
             >
-              <div className="bg-primary/10 border border-secondary/20 rounded-xl p-3 overflow-hidden">
+              <div className="md:bg-primary/10 md:border md:border-secondary/20 md:rounded-xl md:p-3 overflow-hidden">
                 <div
                   id="recaptcha"
                   ref={recaptchaRef}
@@ -235,14 +241,21 @@ const ContactForm = () => {
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants}>
+            <motion.div className="mx-auto" variants={itemVariants}>
               <button
                 type="submit"
-                className="w-56 px-6 py-4 bg-primary hover:animate-jello text-base-200 rounded-full text-xl font-bold border border-secondary/20 hover:border-secondary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-56 px-6 py-4 bg-primary hover:animate-jello text-base-200 rounded-full text-xl font-bold border border-secondary/20 hover:border-secondary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 aria-label="Send message"
-                disabled={!recaptchaToken}
+                disabled={!recaptchaToken || isSending}
               >
-                Get in touch
+                {isSending ? (
+                  <div className="flex items-center space-x-2">
+                    <div className="w-5 h-5 border-2 border-t-2 border-t-secondary border-secondary/50 rounded-full animate-spin"></div>
+                    <span>Sending...</span>
+                  </div>
+                ) : (
+                  "Get in touch"
+                )}
               </button>
             </motion.div>
 
