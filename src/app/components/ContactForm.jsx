@@ -6,111 +6,86 @@ import Script from "next/script";
 
 const ContactForm = () => {
   const form = useRef();
-  const recaptchaRef = useRef(null);
   const [isSent, setIsSent] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState(null);
-  const [isRecaptchaLoaded, setIsRecaptchaLoaded] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   useEffect(() => {
     setIsClient(true);
+  }, []);
 
-    // Define global callbacks for reCAPTCHA
-    window.onRecaptchaLoad = () => {
-      setIsRecaptchaLoaded(true);
-
-      // Explicitly render reCAPTCHA when loaded
-      if (
-        typeof window.grecaptcha !== "undefined" &&
-        window.grecaptcha.render &&
-        recaptchaRef.current
-      ) {
-        try {
-          window.grecaptcha.render("recaptcha", {
-            sitekey: "6LdsQycrAAAAAHY9PoJTGfErfXBz6Jws568zfsKo",
-            callback: (token) => {
-              setRecaptchaToken(token);
-            },
-            "expired-callback": () => {
-              setRecaptchaToken(null);
-            },
-          });
-        } catch (error) {
-          console.error("reCAPTCHA rendering error:", error);
-        }
+  const executeRecaptcha = async () => {
+    return new Promise((resolve, reject) => {
+      if (typeof window.grecaptcha === "undefined") {
+        reject("reCAPTCHA not loaded");
+        return;
       }
-    };
 
-    return () => {
-      // Clean up
-      delete window.onRecaptchaLoad;
-    };
-  }, [isClient]);
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    // Verify recaptcha
-    if (!recaptchaToken) {
-      setIsError(true);
-      setTimeout(() => setIsError(false), 5000);
-      return;
-    }
-
-    // Create formData from the form
-    const formData = new FormData(form.current);
-    const now = new Date();
-    const formattedTime = now.toLocaleString("en-US", {
-      weekday: "short",
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
+      window.grecaptcha.ready(() => {
+        window.grecaptcha
+          .execute(recaptchaSiteKey, { action: "submit" })
+          .then(resolve)
+          .catch(reject);
+      });
     });
+  };
 
-    // Convert FormData to emailjs expected format
-    const templateParams = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      subject: formData.get("subject"),
-      title: formData.get("subject"), // Add mapping for email subject
-      message: formData.get("message"),
-      time: formattedTime,
-      "g-recaptcha-response": recaptchaToken,
-    };
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-    emailjs
-      .send(
-        "service_1ilk9dv",
-        "template_qbs2vsf",
+    try {
+      // Get reCAPTCHA token
+      const token = await executeRecaptcha();
+
+      // Create formData from the form
+      const formData = new FormData(form.current);
+      const now = new Date();
+      const formattedTime = now.toLocaleString("en-US", {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      // Convert FormData to emailjs expected format
+      const templateParams = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        subject: formData.get("subject"),
+        title: formData.get("subject"),
+        message: formData.get("message"),
+        time: formattedTime,
+        "g-recaptcha-response": token,
+      };
+
+      const result = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
         templateParams,
-        "n6tjhHNcncrF8KrhL"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          setIsSent(true);
-          setIsError(false);
-          form.current.reset();
-
-          // Reset reCAPTCHA
-          if (window.grecaptcha) {
-            window.grecaptcha.reset();
-          }
-          setRecaptchaToken(null);
-
-          // Hide success message after 5 seconds
-          setTimeout(() => setIsSent(false), 5000);
-        },
-        (error) => {
-          console.log(error.text);
-          setIsError(true);
-          // Hide error message after 5 seconds
-          setTimeout(() => setIsError(false), 5000);
-        }
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       );
+
+      console.log(result.text);
+      setIsSent(true);
+      setIsError(false);
+      form.current.reset();
+
+      // Hide success message after 5 seconds
+      setTimeout(() => setIsSent(false), 5000);
+    } catch (error) {
+      console.error("Error:", error);
+      setIsError(true);
+      // Hide error message after 5 seconds
+      setTimeout(() => setIsError(false), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Animation variants
@@ -151,9 +126,9 @@ const ContactForm = () => {
 
   return (
     <>
-      {/* reCAPTCHA Script */}
+      {/* reCAPTCHA v3 Script */}
       <Script
-        src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit"
+        src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
         strategy="afterInteractive"
       />
 
@@ -222,26 +197,40 @@ const ContactForm = () => {
               />
             </motion.div>
 
-            {/* reCAPTCHA container with ref */}
-            <motion.div
-              variants={itemVariants}
-              className="flex justify-center md:justify-start"
-            >
-              <div
-                id="recaptcha"
-                ref={recaptchaRef}
-                className="g-recaptcha"
-              ></div>
-            </motion.div>
-
             <motion.div variants={itemVariants}>
               <button
                 type="submit"
                 className="w-56 px-6 py-4 bg-primary hover:animate-jello text-base-200 rounded-full text-xl font-bold border border-secondary/20 hover:border-secondary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Send message"
-                disabled={!recaptchaToken}
+                disabled={isSubmitting}
               >
-                Get in touch
+                {isSubmitting ? (
+                  <span className="flex items-center justify-center">
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Processing...
+                  </span>
+                ) : (
+                  "Get in touch"
+                )}
               </button>
             </motion.div>
 
@@ -262,11 +251,30 @@ const ContactForm = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-red-500/10 border border-red-500/20 text-red-400 font-medium text-center p-3 rounded-xl"
               >
-                {!recaptchaToken
-                  ? "Please complete the reCAPTCHA verification."
-                  : "Something went wrong. Please try again."}
+                Something went wrong. Please try again.
               </motion.div>
             )}
+            {/* reCAPTCHA v3 badge notice */}
+            <motion.div
+              variants={itemVariants}
+              className="text-xs text-base-content/60 text-center md:text-left"
+            >
+              This site is protected by reCAPTCHA and the Google
+              <a
+                href="https://policies.google.com/privacy"
+                className="text-secondary hover:text-secondary/80 mx-1"
+              >
+                Privacy Policy
+              </a>
+              and
+              <a
+                href="https://policies.google.com/terms"
+                className="text-secondary hover:text-secondary/80 mx-1"
+              >
+                Terms of Service
+              </a>
+              apply.
+            </motion.div>
           </motion.form>
         </div>
       </motion.div>
