@@ -5,6 +5,7 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+
   theme: {
     extend: {
       fontFamily: {
@@ -37,7 +38,6 @@ export default {
           "75%": { transform: "scale3d(1.05, 0.95, 1)" },
           "100%": { transform: "scale3d(1, 1, 1)" },
         },
-        
       },
       animation: {
         moveAndFade: "moveAndFade 1.5s ease-in-out infinite 0.3s",
@@ -49,19 +49,11 @@ export default {
   daisyui: {
     themes: [
       {
-        light: {
-          primary: "#3D3A4A",
-          secondary: "#e07b94",
-          "base-100": "#FFF5E1",
-          "base-200": "#FFD9E8",
-          "base-300": "#d9cfba",
-          "base-content": "#3D3A4A",
-        },
         dark: {
           primary: "#2d2d2d",
           secondary: "#efa5b8",
           "base-100": "#121212",
-          "base-200": "#1e1e1e",
+          "base-200": "#efa5b8",
           "base-300": "#2d2d2d",
           "base-content": "#eee",
         },
@@ -70,7 +62,7 @@ export default {
           primary: "#DCD7C9",
           secondary: "#8C6249",
           "base-100": "#2C3930",
-          "base-200": "#586e5e",
+          "base-200": "#604936",
           "base-300": "#3F4F44",
           "base-content": "#DCD7C9",
         },
