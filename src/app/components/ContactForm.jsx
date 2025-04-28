@@ -8,40 +8,54 @@ const ContactForm = () => {
   const form = useRef();
   const [isSent, setIsSent] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [isClient, setIsClient] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaReady, setRecaptchaReady] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   useEffect(() => {
     setIsClient(true);
+
+    const checkRecaptchaReady = () => {
+      if (typeof window.grecaptcha !== "undefined") {
+        window.grecaptcha.ready(() => {
+          setRecaptchaReady(true);
+        });
+      } else {
+        setTimeout(checkRecaptchaReady, 500);
+      }
+    };
+
+    checkRecaptchaReady();
   }, []);
 
   const executeRecaptcha = async () => {
-    return new Promise((resolve, reject) => {
-      if (typeof window.grecaptcha === "undefined") {
-        reject("reCAPTCHA not loaded");
-        return;
-      }
+    if (typeof window.grecaptcha === "undefined") {
+      throw new Error("reCAPTCHA not loaded");
+    }
 
-      window.grecaptcha.ready(() => {
-        window.grecaptcha
-          .execute(recaptchaSiteKey, { action: "submit" })
-          .then(resolve)
-          .catch(reject);
+    try {
+      const token = await window.grecaptcha.execute(recaptchaSiteKey, {
+        action: "submit",
       });
-    });
+      return token;
+    } catch (error) {
+      throw error;
+    }
   };
 
   const sendEmail = async (e) => {
     e.preventDefault();
+    if (!recaptchaReady) {
+      console.error("reCAPTCHA is not ready yet");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      // Get reCAPTCHA token
       const token = await executeRecaptcha();
-
-      // Create formData from the form
       const formData = new FormData(form.current);
       const now = new Date();
       const formattedTime = now.toLocaleString("en-US", {
@@ -53,7 +67,6 @@ const ContactForm = () => {
         minute: "2-digit",
       });
 
-      // Convert FormData to emailjs expected format
       const templateParams = {
         name: formData.get("name"),
         email: formData.get("email"),
@@ -76,28 +89,22 @@ const ContactForm = () => {
       setIsError(false);
       form.current.reset();
 
-      // Hide success message after 5 seconds
       setTimeout(() => setIsSent(false), 5000);
     } catch (error) {
       console.error("Error:", error);
       setIsError(true);
-      // Hide error message after 5 seconds
       setTimeout(() => setIsError(false), 5000);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Animation variants
   const formVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: 0.5,
-        staggerChildren: 0.2,
-      },
+      transition: { duration: 0.5, staggerChildren: 0.2 },
     },
   };
 
@@ -106,22 +113,13 @@ const ContactForm = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        delay: 0.3,
-      },
-    },
+    visible: { opacity: 1, transition: { duration: 0.8, delay: 0.3 } },
   };
 
   return (
@@ -202,7 +200,7 @@ const ContactForm = () => {
                 type="submit"
                 className="w-56 px-6 py-4 bg-primary hover:animate-jello text-base-200 rounded-full text-xl font-bold border border-secondary/20 hover:border-secondary/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Send message"
-                disabled={isSubmitting}
+                disabled={!recaptchaReady || isSubmitting}
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center">
@@ -254,7 +252,8 @@ const ContactForm = () => {
                 Something went wrong. Please try again.
               </motion.div>
             )}
-            {/* reCAPTCHA v3 badge notice */}
+
+            {/* reCAPTCHA badge notice */}
             <motion.div
               variants={itemVariants}
               className="text-xs text-base-content/60 text-center md:text-left"
