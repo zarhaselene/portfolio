@@ -47,6 +47,30 @@ export default function ProjectPage() {
     },
   };
 
+  // Helper function to render links conditionally
+  const renderLink = (url, icon, text, className = "") => {
+    if (url && url.trim() !== "") {
+      return (
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className={`inline-flex items-center hover:text-secondary transition-colors ${className}`}
+        >
+          {icon} {text}
+        </a>
+      );
+    } else {
+      return (
+        <span
+          className={`inline-flex items-center text-base-content/50 ${className}`}
+        >
+          {icon} {text} <span className="ml-1 text-xs">(coming soon)</span>
+        </span>
+      );
+    }
+  };
+
   return (
     <section className="py-16 md:py-24 px-4 max-w-7xl mx-auto">
       <motion.div initial="hidden" animate="visible" variants={fadeIn}>
@@ -74,22 +98,16 @@ export default function ProjectPage() {
           </div>
 
           <div className="flex gap-6">
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center hover:text-secondary transition-colors"
-            >
-              <FaExternalLinkAlt className="mr-2" /> Live Site
-            </a>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center hover:text-secondary transition-colors"
-            >
-              <FaGithub className="mr-2" /> Source Code
-            </a>
+            {renderLink(
+              project.liveUrl,
+              <FaExternalLinkAlt className="mr-2" />,
+              "Live Site"
+            )}
+            {renderLink(
+              project.githubUrl,
+              <FaGithub className="mr-2" />,
+              "Source Code"
+            )}
           </div>
         </div>
 
@@ -185,23 +203,17 @@ export default function ProjectPage() {
                 <h4 className="text-sm uppercase tracking-wider text-base-content/60 mb-2">
                   Links
                 </h4>
-                <div className="space-y-2">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center hover:text-secondary transition-colors"
-                  >
-                    <FaExternalLinkAlt className="mr-2" /> Live Demo
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center hover:text-secondary transition-colors"
-                  >
-                    <FaGithub className="mr-2" /> GitHub Repository
-                  </a>
+                <div className="flex flex-col space-y-2">
+                  {renderLink(
+                    project.liveUrl,
+                    <FaExternalLinkAlt className="mr-2" />,
+                    "Live Demo"
+                  )}
+                  {renderLink(
+                    project.githubUrl,
+                    <FaGithub className="mr-2" />,
+                    "GitHub Repository"
+                  )}
                 </div>
               </div>
             </motion.aside>

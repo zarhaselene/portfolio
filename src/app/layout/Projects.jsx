@@ -35,6 +35,34 @@ const Projects = () => {
     },
   };
 
+  // Helper function to render clickable or disabled links
+  const renderLink = (url, icon, ariaLabel) => {
+    const baseClassName = "transition-colors focus-ring";
+
+    if (url && url.trim() !== "") {
+      return (
+        <a
+          target="_blank"
+          href={url}
+          className={`${baseClassName} hover:text-secondary hover:animate-jello`}
+          aria-label={ariaLabel}
+          rel="noreferrer"
+        >
+          {icon}
+        </a>
+      );
+    } else {
+      return (
+        <span
+          className={`${baseClassName} text-base-content/40 cursor-not-allowed`}
+          aria-label={`${ariaLabel} (not available)`}
+        >
+          {icon}
+        </span>
+      );
+    }
+  };
+
   return (
     <section
       id="projects"
@@ -84,24 +112,16 @@ const Projects = () => {
                   role="group"
                   aria-label={`Links for ${project.title}`}
                 >
-                  <a
-                    target="_blank"
-                    href={project.liveUrl}
-                    className="hover:text-secondary hover:animate-jello transition-colors focus-ring"
-                    aria-label={`Visit live site for ${project.title}`}
-                    rel="noreferrer"
-                  >
-                    <FaExternalLinkAlt size={24} />
-                  </a>
-                  <a
-                    target="_blank"
-                    href={project.githubUrl}
-                    className="hover:text-secondary hover:animate-jello transition-colors focus-ring"
-                    aria-label={`View source code for ${project.title} on GitHub`}
-                    rel="noreferrer"
-                  >
-                    <FaGithub size={24} />
-                  </a>
+                  {renderLink(
+                    project.liveUrl,
+                    <FaExternalLinkAlt size={24} />,
+                    `Visit live site for ${project.title}`
+                  )}
+                  {renderLink(
+                    project.githubUrl,
+                    <FaGithub size={24} />,
+                    `View source code for ${project.title} on GitHub`
+                  )}
                 </div>
               </div>
               <p className="text-[1rem] lg:text-lg mt-4 text-base-content/80">

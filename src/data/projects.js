@@ -48,26 +48,20 @@ export const projects = [
     imagePath: "/assets/projects/Pokedex.png",
   },
   {
-    title: "Countdown",
+    title: "Ansökshjälpen - (coming soon)",
     description:
-      "A responsive countdown timer that ticks down every second. Includes hover states for interactive elements and a card flip animation for changing numbers.",
-    tags: ["HTML5", "JavaScript", "CSS3", "CSS Grid", "Flexbox"],
-    liveUrl: "https://zarhaselene-countdown.netlify.app/",
-    githubUrl: "https://github.com/zarhaselene/countdown",
-    slug: "countdown",
+      "AI-Powered Disability Assistant that combats high rejection rates for workplace accommodation requests. Features guided forms and interview simulations to prevent common application mistakes with an accessibility-focused design.",
+    tags: ["Open AI", "Accessibility", "UX/UI", "Next.js", "Tailwind CSS"],
+    liveUrl: "",
+    githubUrl: "",
+    slug: "ansokshjalpen",
     challenge:
-      "Creating an engaging, visually appealing countdown timer with smooth animations and cross-browser compatibility.",
+      "High rejection rates for workplace accommodation requests through Försäkringskassan, often due to common application mistakes and accessibility barriers.",
     solution:
-      "Built a responsive countdown application with flip card animations that work across different devices and browsers.",
-    process: [
-      "Designed the visual interface with a focus on readability and aesthetics",
-      "Implemented custom CSS animations for the flip effect",
-      "Built the JavaScript logic for accurate time calculations",
-      "Optimized the layout for both desktop and mobile devices",
-    ],
-    results:
-      "Delivered a polished countdown timer with engaging animations that maintains accurate timing and performs well across different screen sizes and browsers.",
-    imagePath: "/assets/projects/Countdown.png",
+      "Created an AI-powered digital assistant that guides users through accommodation request forms and simulates interviews to prevent common mistakes.",
+    process: ["Coming Soon"],
+    results: "Coming Soon",
+    imagePath: "/assets/projects/ComingSoon.png",
   },
 ];
 
