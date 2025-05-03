@@ -168,10 +168,12 @@ const ContactForm = () => {
               <input
                 type="text"
                 name="name"
+                id="name"
                 placeholder="Your Name *"
                 required
                 className="w-full px-5 py-4 bg-primary/10 border border-secondary/20 rounded-xl focus:border-secondary focus:outline-none text-base-content placeholder:text-base-content/50 transition-all duration-300"
                 aria-label="Your name"
+                autoComplete="name"
               />
             </motion.div>
 
@@ -179,10 +181,12 @@ const ContactForm = () => {
               <input
                 type="email"
                 name="email"
+                id="email"
                 placeholder="Your Email *"
                 required
                 className="w-full px-5 py-4 bg-primary/10 border border-secondary/20 rounded-xl focus:border-secondary focus:outline-none text-base-content placeholder:text-base-content/50 transition-all duration-300"
                 aria-label="Your email"
+                autoComplete="email"
               />
             </motion.div>
 
@@ -190,20 +194,24 @@ const ContactForm = () => {
               <input
                 type="text"
                 name="subject"
+                id="subject"
                 placeholder="Subject"
                 className="w-full px-5 py-4 bg-primary/10 border border-secondary/20 rounded-xl focus:border-secondary focus:outline-none text-base-content placeholder:text-base-content/50 transition-all duration-300"
                 aria-label="Subject"
+                autoComplete="off"
               />
             </motion.div>
 
             <motion.div variants={itemVariants}>
               <textarea
                 name="message"
+                id="message"
                 placeholder="Your Message *"
                 required
                 rows={5}
                 className="w-full px-5 py-4 md:mt-5 bg-primary/10 border border-secondary/20 rounded-xl focus:border-secondary focus:outline-none text-base-content placeholder:text-base-content/50 resize-none transition-all duration-300"
                 aria-label="Your message"
+                autoComplete="off"
               />
             </motion.div>
 
