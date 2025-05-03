@@ -63,9 +63,12 @@ export default function ProjectPage() {
     } else {
       return (
         <span
-          className={`inline-flex items-center text-base-content/50 ${className}`}
+          className={`flex flex-col space-y-1 md:flex-row md:items-center text-base-content/50 ${className}`}
         >
-          {icon} {text} <span className="ml-1 text-xs">(coming soon)</span>
+          <div className="flex items-center">
+            {icon} {text}
+          </div>
+          <span className="md:ml-1 text-xs">(coming soon)</span>
         </span>
       );
     }
