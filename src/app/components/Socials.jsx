@@ -74,15 +74,15 @@ export default function Socials() {
       )}
 
       {isMobile && (
-        <div className="fixed bottom-0 left-0 right-0 bg-base-100 bg-opacity-90 z-50">
-          <div className="flex justify-around items-center py-4 px-4">
+        <div className="fixed bottom-0 left-0 right-0 bg-base-100 backdrop-blur-md z-50 shadow-lg border-t border-secondary/20">
+          <div className="flex justify-around items-center py-3 px-4">
             {SocialLinks.map((link, index) => (
               <a
                 key={index}
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex flex-col items-center text-[#E0E4E7] hover:text-[#B5C1C9] transition-colors duration-300"
+                className="flex flex-col items-center text-base-content hover:text-secondary transition-colors duration-300"
               >
                 <link.icon size={24} className="mb-1" />
               </a>
