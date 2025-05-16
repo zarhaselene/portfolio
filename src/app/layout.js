@@ -1,4 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import "./styles/globals.css";
 import { Poppins, Bebas_Neue } from "next/font/google";
 import ThemeInitializer from "./components/ThemeInitializer";
@@ -39,6 +41,7 @@ export default function RootLayout({ children }) {
         <ThemeInitializer />
         {children}
         <BackToTopBtn />
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>
