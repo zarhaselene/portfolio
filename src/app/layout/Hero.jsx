@@ -118,6 +118,11 @@ const Hero = () => {
       variants={containerVariants}
     >
       <h1 className="w-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 xl:max-w-[1280px] lg:max-w-[900px] sm:max-w-[580px]">
+        <span className="sr-only">
+          Full-Stack Developer. Hello there, I'm Zarha. Stockholm-based
+          full-stack developer with a passion for creating digital experiences
+          that merge form and function.
+        </span>
         {/* Animated Heading */}
         <motion.span
           className="flex items-center justify-center"
@@ -127,7 +132,7 @@ const Hero = () => {
           {/* Animated middle line */}
           <motion.span
             className="block w-full bg-base-content h-[10px] 
-            mx-[10px] min-w-[50px] sm:h-[15px] sm:mx-[15px] lg:h-[30px] !lg:mx-[50px]"
+            mx-[10px] min-w-[50px] sm:h-[15px] sm:mx-[15px] lg:h-[30px] lg:!mx-[50px]"
             style={{
               minWidth: isLargeScreen ? `${lineWidth}px` : "auto",
             }}
