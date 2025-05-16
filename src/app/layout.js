@@ -27,8 +27,10 @@ export const metadata = {
       { url: "/favicon/favicon.ico", sizes: "any", type: "image/x-icon" },
     ],
   },
+  verification: {
+    google: "NZbYxysDAjUrNtXshFLqSVV2EyVIBT6C368ApiytGM4",
+  },
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
