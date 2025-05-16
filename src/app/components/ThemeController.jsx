@@ -86,9 +86,11 @@ const ThemeSelector = () => {
           setFocusedIndex(themes.findIndex((t) => t.name === theme));
         }}
         onKeyDown={handleKeyDown}
-        className="px-4 py-2 bg-base-100  hover:bg-base-300 transition-colors flex items-center gap-2 focus-ring"
+        className="px-4 py-2 bg-base-100 hover:bg-base-300 transition-colors flex items-center gap-2 focus-ring"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
+        aria-controls="theme-listbox"
+        id="theme-button"
       >
         <span className="font-header text-lg">Theme</span>
         <svg
@@ -99,6 +101,7 @@ const ThemeSelector = () => {
           }`}
           fill="currentColor"
           viewBox="0 0 2048 2048"
+          aria-hidden="true"
         >
           <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z" />
         </svg>
@@ -116,6 +119,8 @@ const ThemeSelector = () => {
             exit="hidden"
             transition={{ duration: 0.3 }}
             role="listbox"
+            id="theme-listbox"
+            aria-labelledby="theme-button"
           >
             {themes.map((t, i) => (
               <button
@@ -127,13 +132,12 @@ const ThemeSelector = () => {
                 }}
                 onKeyDown={handleKeyDown}
                 className={`w-full px-4 py-2 text-left hover:bg-secondary/80 rounded-md hover:text-primary transition-colors font-header focus-ring 
-                  ${
-                    theme === t.name
-                      ? "text-secondary bg-primary"
-                      : "text-base-content"
-                  }`}
+          ${
+            theme === t.name ? "text-secondary bg-primary" : "text-base-content"
+          }`}
                 role="option"
                 aria-selected={theme === t.name}
+                id={`theme-option-${t.name}`}
               >
                 {t.label}
               </button>
