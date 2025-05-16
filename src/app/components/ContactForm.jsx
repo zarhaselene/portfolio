@@ -249,6 +249,8 @@ const ContactForm = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-green-500/10 border border-green-500/20 text-green-400 font-medium text-center p-3 rounded-xl"
+                aria-live="polite"
+                role="status"
               >
                 Message sent successfully!
               </motion.div>
@@ -259,6 +261,8 @@ const ContactForm = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-red-500/10 border border-red-500/20 text-red-400 font-medium text-center p-3 rounded-xl"
+                aria-live="assertive"
+                role="alert"
               >
                 Something went wrong. Please try again.
               </motion.div>
