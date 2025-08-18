@@ -22,7 +22,7 @@ const SocialIcon = ({ href, icon: Icon, tooltip, id, ariaLabel }) => (
 
 const SocialLinks = [
   {
-    href: "/zarhaselene/Zarha_Buske_Resume.pdf",
+    href: "/Zarha_Buske_Resume.pdf",
     icon: FaRegFileAlt,
     tooltip: "Download my resume",
     id: "resume-tooltip",
