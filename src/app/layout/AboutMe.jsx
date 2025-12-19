@@ -39,7 +39,7 @@ const AboutMe = () => {
     },
   };
 
-  const technologyItems = ["Next.js", "Tailwind CSS", "SASS", "React Native"];
+  const technologyItems = ["Next.js", "PHP", "Tailwind CSS", "SASS"];
 
   return (
     <section
@@ -139,7 +139,7 @@ const AboutMe = () => {
 
               <motion.div className="pt-6" variants={contentVariants}>
                 <h3 id="tech-heading" className="text-2xl font-semibold mb-4 tracking-[1px]">
-                  Technologies I Love
+                  Technologies I Love 
                 </h3>
                 <motion.div
                   className="flex flex-wrap gap-3"
