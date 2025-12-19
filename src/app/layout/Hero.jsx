@@ -152,9 +152,9 @@ const Hero = () => {
               Hello there,
             </motion.p>
 
-            <motion.p className="text-[2.5rem] lg:text-[3rem]">
+            <motion.h2 className="my-2 text-[2.5rem] lg:text-[3rem]">
               I&rsquo;m Zarha
-            </motion.p>
+            </motion.h2>
             <motion.p
               className="text-[1rem] font-main"
               initial={{ opacity: 0 }}
