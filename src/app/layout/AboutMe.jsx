@@ -138,7 +138,7 @@ const AboutMe = () => {
               </motion.p>
 
               <motion.div className="pt-6" variants={contentVariants}>
-                <h3 className="text-2xl font-semibold mb-4 tracking-[1px]">
+                <h3 id="tech-heading" className="text-2xl font-semibold mb-4 tracking-[1px]">
                   Technologies I Love
                 </h3>
                 <motion.div
