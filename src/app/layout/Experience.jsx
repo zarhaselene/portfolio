@@ -5,7 +5,15 @@ import { motion } from "framer-motion";
 const Experience = () => {
   const experiences = [
     {
-      period: "2022 - 2023",
+      period: "Nov 2025 - May 2026",
+      role: "Frontend Developer Intern",
+      company: "The Generation | Stockholm",
+      description:
+        "",
+      technologies: ["WordPress", "G-Theme", "PHP", "SCSS"],
+    },
+    {
+      period: "Oct 2022 - May 2023",
       role: "Frontend Developer Intern",
       company: "Sphinxly | Remote",
       description:
