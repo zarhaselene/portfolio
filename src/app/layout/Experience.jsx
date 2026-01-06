@@ -9,16 +9,16 @@ const Experience = () => {
       role: "Frontend Developer Intern",
       company: "The Generation | Stockholm",
       description:
-        "",
-      technologies: ["WordPress", "G-Theme", "PHP", "SCSS"],
+        "I work on developing websites based on their proprietary G-theme. My work includes developing and customizing functionality and layout using PHP, Sass, and JavaScript. I have worked on live client projects and am involved throughout the entire development process.",
+      technologies: ["WordPress", "G-Theme", "PHP", "SCSS", "JavaScript"],
     },
     {
       period: "Oct 2022 - May 2023",
-      role: "Frontend Developer Intern",
+      role: "Web Developer Intern",
       company: "Sphinxly | Remote",
       description:
         "Collaborated with a team of interns to plan, develop, and deliver a client website using Easyweb CMS, React.js, TypeScript, and SCSS. Participated in various client projects, providing technical support and troubleshooting. Enhanced frontend performance and responsiveness through code optimization and testing.",
-      technologies: ["Easyweb CMS", "React.js", "TypeScript", "SCSS"],
+      technologies: ["Easyweb CMS", "PHP", "React.js", "TypeScript", "SCSS"],
     },
   ];
 
