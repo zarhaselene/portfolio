@@ -14,6 +14,7 @@ const Skills = () => {
         "JavaScript",
         "React",
         "Next.js",
+        "Vue",
         "Tailwind CSS",
         "SASS",
         "Framer Motion",
@@ -54,7 +55,7 @@ const Skills = () => {
       category: "Tools & Workflow",
       description:
         "I bring structure and efficiency to development with collaborative, agile approaches.",
-      items: ["Git", "Agile Methodologies", "Jira"],
+      items: ["Git", "Agile Methodologies", "Jira", "Asana"],
     },
   ];
 
