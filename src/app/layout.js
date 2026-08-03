@@ -21,7 +21,7 @@ const bebasNeue = Bebas_Neue({
 export const metadata = {
   title: "Zarha Selene | Portfolio",
   description:
-    "Stockholm-based full-stack developer passionate about accessible digital experiences. With expertise in React, Next.js, and design fundamentals, I transform ideas into intuitive applications where form meets function and frontend magic happens.",
+    "Stockholm-based frontend developer passionate about accessible digital experiences. With expertise in React, Next.js, and design fundamentals, I transform ideas into intuitive applications where form meets function and frontend magic happens.",
   icons: {
     icon: [
       { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
