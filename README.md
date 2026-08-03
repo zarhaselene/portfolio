@@ -10,7 +10,7 @@ Explore the live version of my portfolio here: [Live Preview](https://zarhaselen
 
 ## 🌸 Screenshot
 
-![Portfolio Preview](/assets/Screenshot.png)
+![Portfolio Preview](public/assets/Screenshot.png)
 
 ## ✨ Features
 
