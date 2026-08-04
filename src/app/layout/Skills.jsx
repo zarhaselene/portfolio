@@ -164,11 +164,7 @@ const Skills = () => {
 						<motion.div
 							key={index}
 							variants={skillGroupVariants}
-							className="bg-primary/5 border rounded-xl border-secondary/20 hover:border-secondary/50 transition-colors p-5 h-fit"
-							whileHover={{
-								scale: 1.02,
-								transition: { duration: 0.2 },
-							}}
+							className="bg-primary/5 border rounded-xl border-secondary/50 transition-colors p-5 h-fit"
 						>
 							<h3
 								id={`skill-category-${index}`}
