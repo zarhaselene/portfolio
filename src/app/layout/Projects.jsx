@@ -81,7 +81,7 @@ const Projects = () => {
 				>
 					SELECTED PROJECTS
 					<motion.span
-						className="absolute -bottom-0 sm:-bottom-3  lg:-bottom-5  left-0 w-24 h-1 bg-secondary origin-left"
+						className="absolute -bottom-0 sm:-bottom-3 lg:-bottom-5 left-0 w-24 h-1 bg-secondary origin-left"
 						variants={underlineVariants}
 					></motion.span>
 				</motion.h2>
@@ -92,14 +92,14 @@ const Projects = () => {
 							key={index}
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							className="border-t border-secondary/20 pt-8 hover:border-secondary/50 transition-colors focus-ring group"
+							className="relative border-t border-secondary/20 pt-8 hover:border-secondary/50 transition-colors focus-ring group"
 							aria-labelledby={`project-${index}-title`}
 							tabIndex="0"
 						>
 							<div className="flex flex-col-reverse md:flex-row justify-between items-baseline">
 								<Link
 									href={`/projects/${project.slug}`}
-									className="hover:text-secondary transition-colors"
+									className="hover:text-secondary transition-colors before:absolute before:inset-0 before:z-0 outline-none"
 								>
 									<h3
 										className="text-[2rem] tracking-[2px] lg:text-4xl font-bold group-hover:text-secondary transition-colors"
@@ -108,8 +108,9 @@ const Projects = () => {
 										{project.title}
 									</h3>
 								</Link>
+
 								<div
-									className="flex gap-4 mb-6"
+									className="relative z-10 flex gap-4 mb-6"
 									role="group"
 									aria-label={`Links for ${project.title}`}
 								>
@@ -125,9 +126,11 @@ const Projects = () => {
 									)}
 								</div>
 							</div>
+
 							<p className="text-[1rem] lg:text-lg mt-4 text-base-content/80">
 								{project.description}
 							</p>
+
 							<div className="flex flex-col md:flex-row justify-between md:items-center">
 								<ul className="flex flex-wrap gap-3 mt-6">
 									{project.tags.map((tag, tagIndex) => (
@@ -139,13 +142,14 @@ const Projects = () => {
 										</li>
 									))}
 								</ul>
-								<Link
-									href={`/projects/${project.slug}`}
-									className="mt-6 inline-flex items-center text-base hover:text-secondary transition-colors"
+
+								<span
+									className="mt-6 inline-flex items-center text-base group-hover:text-secondary transition-colors cursor-pointer"
+									aria-hidden="true"
 								>
 									View Case Study
 									<FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-								</Link>
+								</span>
 							</div>
 						</motion.article>
 					))}
